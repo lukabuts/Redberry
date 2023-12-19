@@ -19,6 +19,10 @@ function Categories({
   }
 
   useEffect(() => {
+    if (selectedFilters.length === 0) {
+      localStorage.removeItem("filters");
+      return;
+    }
     localStorage.setItem("filters", JSON.stringify(selectedFilters));
   }, [selectedFilters]);
 
