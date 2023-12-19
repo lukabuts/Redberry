@@ -1,6 +1,6 @@
 import { useState } from "react";
-import xImg from "../../assets/x.svg";
-import vectorImg from "../../assets/Vector.svg";
+import xImg from "../../assets/images/x.svg";
+import vectorImg from "../../assets/images/vector.svg";
 
 function Popup({ setActivePopup, successText }: { successText: string }) {
   const [success, setSuccess] = useState<boolean>(false);

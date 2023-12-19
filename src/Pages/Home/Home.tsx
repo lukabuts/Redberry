@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Categories from "../../Components/Categories/Categories";
 import Header from "../../Components/Header/Header";
-import blogLogo from "../../assets/Blog-1024x355 1.svg";
+import blogLogo from "../../assets/images/blog-bg.svg";
 import Post from "../../Components/Post/Post";
 // !!! Delete this image
-import testImg from "../../assets/test.svg";
+import testImg from "../../assets/images/test.svg";
 
 function Home() {
   const [data, setData] = useState([]);

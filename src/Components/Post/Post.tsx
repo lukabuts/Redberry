@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Data from "../../Types/Data";
-import arrowImg from "../../assets/Arrow.png";
+import arrowImg from "../../assets/images/arrow.png";
 import { Link } from "react-router-dom";
 
 function Post({

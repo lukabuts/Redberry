@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import redberryLogo from "../../assets/LOGO-02 3.svg";
+import redberryLogo from "../../assets/images/logo.svg";
 import { useEffect, useState } from "react";
 import Popup from "../Popup/Popup";
 
