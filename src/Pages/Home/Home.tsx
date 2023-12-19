@@ -6,6 +6,7 @@ import blogLogo from "../../assets/Blog-1024x355 1.svg";
 import Post from "../../Components/Post/Post";
 // !!! Delete this image
 import testImg from "../../assets/test.svg";
+
 function Home() {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -16,6 +17,7 @@ function Home() {
       })
       .catch((err) => console.log(err));
   }, []);
+
   return (
     <>
       <Header />

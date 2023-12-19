@@ -6,9 +6,14 @@ export default {
       height: {
         header: "80px",
         post_img: "328px",
+        successImg: "53px",
+      },
+      width: {
+        successImg: "53px",
       },
       maxWidth: {
         post: "408px",
+        popup: "480px",
       },
       colors: {
         white: "#fff",
@@ -17,6 +22,7 @@ export default {
         dark_gray: "#404049",
         header_login: "#5D37F3",
         see_more: "#5D37F3",
+        successImg: "#14D81C",
       },
       padding: {
         main: "76px",
@@ -25,6 +31,10 @@ export default {
         header_login_y: "10px",
         component_item_x: "16px",
         component_item_y: "8px",
+        popup_x: "20px",
+        popup_y: "40px",
+        login_inp_x: "16px",
+        login_inp_y: "12px",
       },
       margin: {
         home_container_t: "64px",
@@ -32,10 +42,11 @@ export default {
       borderRadius: {
         header_login: "8px",
         component_item: "30px",
-        post_img: "12px",
+        12: "12px",
       },
       zIndex: {
         header: 99,
+        popup: 999,
       },
       fontSize: {
         normal: "14px",
@@ -43,6 +54,7 @@ export default {
         16: "16px",
         12: "12px",
         20: "20px",
+        24: "24px",
       },
       fontWeight: {
         700: 700,
@@ -52,6 +64,8 @@ export default {
       lineHeight: {
         72: "72px",
         post_desc: "28px",
+        32: "32px",
+        20: "20px",
       },
       gap: {
         components: "24px",
@@ -59,6 +73,15 @@ export default {
         post: "24px",
         post_container_x: "32px",
         post_container_y: "56px",
+      },
+      borderColor: {
+        input_normal: "#E4E3EB",
+      },
+      borderWidth: {
+        input: "1px",
+      },
+      spacing: {
+        x_icon: "20px",
       },
     },
   },

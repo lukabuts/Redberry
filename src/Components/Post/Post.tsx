@@ -26,7 +26,7 @@ function Post({
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const filteredData = categoriesData.filter((x) =>
+    const filteredData: Data[] = categoriesData.filter((x) =>
       categories.includes(x.title)
     );
     setData(filteredData);
@@ -38,7 +38,7 @@ function Post({
   return (
     <div className="flex flex-col gap-post max-w-post">
       {/* Img */}
-      <div className="flex items-center justify-center overflow-hidden bg-gray-500 h-post_img rounded-post_img">
+      <div className="flex items-center justify-center overflow-hidden bg-gray-500 h-post_img rounded-12">
         <img src={img} alt={title} />
       </div>
       {/* Info */}
