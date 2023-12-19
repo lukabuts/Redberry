@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Popup from "../Popup/Popup";
 
 function Header() {
-  const [activePopup, setActivePopup] = useState<boolean>(false);
+  const [activePopup, setActivePopup] = useState(false);
 
   useEffect(() => {
     const body = document.getElementById("body");
@@ -23,7 +23,12 @@ function Header() {
   }
   return (
     <>
-      {activePopup ? <Popup setActivePopup={setActivePopup} /> : null}
+      {activePopup ? (
+        <Popup
+          setActivePopup={setActivePopup}
+          successText="წარმატებული ავტორიზაცია"
+        />
+      ) : null}
       <header className="sticky top-0 flex items-center justify-between bg-white h-header px-main z-header">
         <Link to="/">
           <img

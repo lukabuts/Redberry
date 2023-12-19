@@ -1,21 +1,24 @@
 import { useEffect } from "react";
 import Data from "../../Types/Data";
+
+interface CategoriesProps {
+  data: Data[];
+  selectedFilters: string[];
+  setSelectedFilters: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
 function Categories({
   data,
   selectedFilters,
   setSelectedFilters,
-}: {
-  data: Data[];
-  selectedFilters: string[];
-}) {
-  function handleClick(title) {
-    const find = selectedFilters.find((x) => x === title);
+}: CategoriesProps) {
+  function handleClick(title: string) {
+    const find = selectedFilters.find((x: string) => x === title);
     if (!find) {
       setSelectedFilters([...selectedFilters, title]);
     } else {
-      setSelectedFilters(selectedFilters.filter((x) => x !== title));
+      setSelectedFilters(selectedFilters.filter((x: string) => x !== title));
     }
-    return;
   }
 
   useEffect(() => {
@@ -35,7 +38,7 @@ function Categories({
               handleClick(item.title);
             }}
             className={`cursor-pointer rounded-component_item px-component_item_x py-component_item_y ${
-              selectedFilters.find((x) => x === item.title)
+              selectedFilters.find((x: string) => x === item.title)
                 ? "border-black_ border-2"
                 : ""
             }`}

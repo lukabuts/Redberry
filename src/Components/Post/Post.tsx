@@ -3,6 +3,17 @@ import Data from "../../Types/Data";
 import arrowImg from "../../assets/images/arrow.png";
 import { Link } from "react-router-dom";
 
+interface PostProps {
+  img: string;
+  author: string;
+  date: string;
+  id: number;
+  title: string;
+  desc: string;
+  categories: string[];
+  categoriesData: Data[];
+}
+
 function Post({
   img,
   author,
@@ -12,26 +23,17 @@ function Post({
   desc,
   categories,
   categoriesData,
-}: {
-  img: string;
-  author: string;
-  date: string;
-  id: number;
-  title: string;
-  desc: string;
-  categories: string[];
-  categoriesData: Data[];
-}) {
-  const [data, setData] = useState([]);
+}: PostProps) {
+  const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
     const filteredData: Data[] = categoriesData.filter((x) =>
       categories.includes(x.title)
     );
     setData(filteredData);
-  }, []);
+  }, [categories, categoriesData]);
   return (
-    <div className="flex flex-col gap-post max-w-post">
+    <div key={id} className="flex flex-col gap-post max-w-post">
       {/* Img */}
       <div className="flex items-center justify-center overflow-hidden bg-gray-500 h-post_img rounded-12">
         <img src={img} alt={title} />

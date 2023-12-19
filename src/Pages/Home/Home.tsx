@@ -8,10 +8,12 @@ import Post from "../../Components/Post/Post";
 import testImg from "../../assets/images/test.svg";
 
 function Home() {
+  const filters: any = localStorage.getItem("filters");
   const [data, setData] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState(
-    JSON.parse(localStorage.getItem("filters")) || []
+    JSON.parse(filters) || []
   );
+
   useEffect(() => {
     axios
       .get("https://api.blog.redberryinternship.ge/api/categories")

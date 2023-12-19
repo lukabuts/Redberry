@@ -2,14 +2,19 @@ import { useState } from "react";
 import xImg from "../../assets/images/x.svg";
 import vectorImg from "../../assets/images/vector.svg";
 
-function Popup({ setActivePopup, successText }: { successText: string }) {
+interface PopupProps {
+  successText: string;
+  setActivePopup: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Popup({ setActivePopup, successText }: PopupProps) {
   const [success, setSuccess] = useState<boolean>(false);
 
   function closePopup() {
     setActivePopup(false);
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSuccess(true);
   }
@@ -61,9 +66,7 @@ function Popup({ setActivePopup, successText }: { successText: string }) {
               <div className="flex items-center self-center justify-center rounded-full w-successImg h-successImg bg-successImg mb-[21px]">
                 <img src={vectorImg} alt="Success" />
               </div>
-              <p className="self-center">
-                {!successText ? "წარმატებული ავტორიზაცია" : successText}
-              </p>
+              <p className="self-center">{successText}</p>
             </>
           )}
           <button
