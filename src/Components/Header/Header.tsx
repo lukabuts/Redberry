@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import redberryLogo from "../../assets/LOGO-02 3.svg";
 function Header() {
   return (
-    <header className="flex items-center justify-between bg-white h-header p-header">
+    <header className="sticky top-0 flex items-center justify-between bg-white h-header px-main z-header">
       <Link to="/">
         <img
           className="cursor-pointer select-none"
