@@ -1,6 +1,6 @@
 import { useState } from "react";
-import xImg from "../../assets/images/x.svg";
-import vectorImg from "../../assets/images/vector.svg";
+import x from "../../assets/images/x.svg";
+import vector from "../../assets/images/vector.svg";
 
 interface PopupProps {
   successText: string;
@@ -34,7 +34,7 @@ function Popup({ setActivePopup, successText }: PopupProps) {
           onClick={closePopup}
           className="absolute top-x_icon right-x_icon"
         >
-          <img src={xImg} alt="exit" />
+          <img src={x} alt="exit" />
         </button>
         {/* Main content */}
         {success ? (
@@ -64,7 +64,7 @@ function Popup({ setActivePopup, successText }: PopupProps) {
           ) : (
             <>
               <div className="flex items-center self-center justify-center rounded-full w-successImg h-successImg bg-successImg mb-[21px]">
-                <img src={vectorImg} alt="Success" />
+                <img src={vector} alt="Success" />
               </div>
               <p className="self-center">{successText}</p>
             </>

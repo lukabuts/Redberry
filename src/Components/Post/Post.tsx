@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Data from "../../Types/Data";
-import arrowImg from "../../assets/images/arrow.png";
+import arrow from "../../assets/images/arrow.png";
 import { Link } from "react-router-dom";
 
 interface PostProps {
@@ -78,7 +78,7 @@ function Post({
               to="/blog"
             >
               სრულად ნახვა
-              <img src={arrowImg} alt="arrow" />
+              <img src={arrow} alt="arrow" />
             </Link>
           </button>
         </div>

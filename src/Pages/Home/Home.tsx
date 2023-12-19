@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Categories from "../../Components/Categories/Categories";
 import Header from "../../Components/Header/Header";
-import blogLogo from "../../assets/images/blog-bg.svg";
+import blogbg from "../../assets/images/blogbg.svg";
 import Post from "../../Components/Post/Post";
 // !!! Delete this image
-import testImg from "../../assets/images/test.svg";
+import test from "../../assets/images/test.svg";
 
 function Home() {
   const filters: any = localStorage.getItem("filters");
@@ -33,7 +33,7 @@ function Home() {
           <h1 className="text-black_ text-64 font-700 leading-72 ml-[13px]">
             ბლოგი
           </h1>
-          <img src={blogLogo} alt="" />
+          <img src={blogbg} alt="" />
         </div>
         {/* Categories */}
         <div className="flex flex-wrap content-center justify-center gap-components mb-home_container_t">
@@ -47,7 +47,7 @@ function Home() {
         {/* Posts */}
         <div className="flex flex-wrap items-center justify-center gap-x-post_container_x gap-y-post_container_y">
           <Post
-            img={testImg}
+            img={test}
             author={"ლილე კვარაცხელია"}
             date={"02.11.2023"}
             id={1}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import redberryLogo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo.svg";
 import { useEffect, useState } from "react";
 import Popup from "../Popup/Popup";
 
@@ -31,11 +31,7 @@ function Header() {
       ) : null}
       <header className="sticky top-0 flex items-center justify-between bg-white h-header px-main z-header">
         <Link to="/">
-          <img
-            className="cursor-pointer select-none"
-            src={redberryLogo}
-            alt="Logo"
-          />
+          <img className="cursor-pointer select-none" src={logo} alt="Logo" />
         </Link>
         <button
           onClick={handleClick}
