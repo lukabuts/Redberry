@@ -9,6 +9,9 @@ import testImg from "../../assets/test.svg";
 
 function Home() {
   const [data, setData] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState(
+    JSON.parse(localStorage.getItem("filters")) || []
+  );
   useEffect(() => {
     axios
       .get("https://api.blog.redberryinternship.ge/api/categories")
@@ -32,7 +35,11 @@ function Home() {
         </div>
         {/* Categories */}
         <div className="flex flex-wrap content-center justify-center gap-components mb-home_container_t">
-          <Categories data={data} />
+          <Categories
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+            data={data}
+          />
         </div>
 
         {/* Posts */}

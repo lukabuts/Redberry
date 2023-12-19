@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Categories from "../Categories/Categories";
 import Data from "../../Types/Data";
 import arrowImg from "../../assets/Arrow.png";
 import { Link } from "react-router-dom";
@@ -30,10 +29,6 @@ function Post({
       categories.includes(x.title)
     );
     setData(filteredData);
-
-    // for (let i = 0; i < categories.length; i++) {
-    //   console.log(categories[i]);
-    // }
   }, []);
   return (
     <div className="flex flex-col gap-post max-w-post">
@@ -53,7 +48,19 @@ function Post({
         </div>
         {/* Categoories */}
         <div className="flex flex-wrap gap-post_info">
-          <Categories data={data} />
+          {data.map((item: Data) => {
+            return (
+              <div
+                className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
+                key={item.id}
+                style={{ background: item.background_color }}
+              >
+                <p className="text-12 " style={{ color: item.text_color }}>
+                  {item.title}
+                </p>
+              </div>
+            );
+          })}
         </div>
         {/* Description */}
         <div>

@@ -35,6 +35,8 @@ export default {
         popup_y: "40px",
         login_inp_x: "16px",
         login_inp_y: "12px",
+        small_component_x: "10px",
+        small_component_y: "6px",
       },
       margin: {
         home_container_t: "64px",
