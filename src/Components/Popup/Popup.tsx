@@ -13,27 +13,15 @@ interface PopupProps {
 
 function Popup({ setActivePopup, mainText, successText }: PopupProps) {
   const [userEmail, setUserEmail] = useState("");
-  const savedtoken = localStorage.getItem("token") || "";
 
-  const [token, setToken] = useState(savedtoken || "");
   const [signedIn, setSignedIn] = useContext(Context);
   const [loginError, setLoginError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // Logging in
-    if (token && signedIn) return;
+    if (signedIn) return;
     setLoading(true);
-    axios
-      .get("https://api.blog.redberryinternship.ge/api/token")
-      .then((res) => {
-        console.log(res);
-        setToken(res.data.token);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     // Login
     axios
       .post("https://api.blog.redberryinternship.ge/api/login", {
@@ -55,9 +43,8 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
   }
 
   useEffect(() => {
-    localStorage.setItem("token", token);
     localStorage.setItem("signedIn", JSON.stringify(signedIn));
-  }, [token, signedIn]);
+  }, [signedIn]);
 
   function closePopup() {
     setActivePopup(false);
