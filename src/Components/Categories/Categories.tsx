@@ -1,23 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Data from "../../Types/Data";
-
+import axios from "axios";
 interface CategoriesProps {
-  data: Data[];
-  selectedFilters: string[];
-  setSelectedFilters: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedFilters: number[];
+  setSelectedFilters: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-function Categories({
-  data,
-  selectedFilters,
-  setSelectedFilters,
-}: CategoriesProps) {
-  function handleClick(title: string) {
-    const find = selectedFilters.find((x: string) => x === title);
+function Categories({ selectedFilters, setSelectedFilters }: CategoriesProps) {
+  const [categories, setCategories] = useState([]);
+  // Get Categories Data From API
+  useEffect(() => {
+    axios
+      .get("https://api.blog.redberryinternship.ge/api/categories")
+      .then((res) => {
+        setCategories(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  function handleClick(id: number) {
+    const find = selectedFilters.find((x) => x === id);
     if (!find) {
-      setSelectedFilters([...selectedFilters, title]);
+      setSelectedFilters([...selectedFilters, id]);
     } else {
-      setSelectedFilters(selectedFilters.filter((x: string) => x !== title));
+      setSelectedFilters(selectedFilters.filter((x) => x !== id));
     }
   }
 
@@ -31,14 +37,14 @@ function Categories({
 
   return (
     <>
-      {data.map((item: Data) => {
+      {categories.map((item: Data) => {
         return (
           <div
             onClick={() => {
-              handleClick(item.title);
+              handleClick(item.id);
             }}
             className={`cursor-pointer rounded-component_item px-component_item_x py-component_item_y ${
-              selectedFilters.find((x: string) => x === item.title)
+              selectedFilters.find((x: number) => x === item.id)
                 ? "border-black border-input"
                 : ""
             }`}

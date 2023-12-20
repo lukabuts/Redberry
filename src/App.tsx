@@ -11,12 +11,16 @@ export const Context = React.createContext<
 >([false, () => {}]);
 
 function App() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const localValue: any = localStorage.getItem("signedIn");
   const [signedIn, setSignedIn] = useState(JSON.parse(localValue) || false);
 
   const savedtoken = localStorage.getItem("token") || "";
   const [token, setToken] = useState(savedtoken || "");
-  // Getting Token
+  const [postsLoading, setPostsLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [postsError, setPostsError] = useState(false);
+
   useEffect(() => {
     // Getting Token
     if (token) return;
@@ -31,6 +35,27 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    // Getting Posts Data
+    if (!token) return;
+    setPostsLoading(true);
+    axios
+      .get("https://api.blog.redberryinternship.ge/api/blogs", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setPosts(res.data.data);
+        setPostsError(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setPostsError(true);
+      })
+      .finally(() => setPostsLoading(false));
+  }, [token]);
+
   // Setting Token To LocalStorage
   useEffect(() => {
     localStorage.setItem("token", token);
@@ -40,7 +65,17 @@ function App() {
       <Context.Provider value={[signedIn, setSignedIn]}>
         <Router>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <Home
+                  posts={posts}
+                  postsLoading={postsLoading}
+                  postsError={postsError}
+                  // setPostsLoading={setPostsLoading}
+                />
+              }
+            />
             <Route path="/blog" element={<Blog />} />
             <Route path="/post" element={<CreatePost />} />
             <Route path="*" element={<NotFound />} />

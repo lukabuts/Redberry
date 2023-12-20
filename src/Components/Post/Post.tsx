@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Data from "../../Types/Data";
 import arrow from "../../assets/images/arrow.png";
 import { Link } from "react-router-dom";
@@ -10,8 +9,7 @@ interface PostProps {
   id: number;
   title: string;
   desc: string;
-  categories: string[];
-  categoriesData: Data[];
+  postCategories: Data;
 }
 
 function Post({
@@ -21,18 +19,10 @@ function Post({
   id,
   title,
   desc,
-  categories,
-  categoriesData,
+  postCategories,
 }: PostProps) {
-  const [data, setData] = useState<Data[]>([]);
-
-  useEffect(() => {
-    const filteredData: Data[] = categoriesData.filter((x) =>
-      categories.includes(x.title)
-    );
-    setData(filteredData);
-  }, [categories, categoriesData]);
   return (
+    // ! Remove Key here !
     <div key={id} className="flex flex-col gap-post max-w-post">
       {/* Img */}
       <div className="flex items-center justify-center overflow-hidden bg-gray-500 h-post_img rounded-12">
@@ -50,19 +40,18 @@ function Post({
         </div>
         {/* Categoories */}
         <div className="flex flex-wrap gap-post_info">
-          {data.map((item: Data) => {
-            return (
-              <div
-                className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
-                key={item.id}
-                style={{ background: item.background_color }}
-              >
-                <p className="text-12 " style={{ color: item.text_color }}>
-                  {item.title}
-                </p>
-              </div>
-            );
-          })}
+          <div
+            className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
+            key={postCategories.id}
+            style={{ background: postCategories.background_color }}
+          >
+            <p
+              className="text-12 "
+              style={{ color: postCategories.text_color }}
+            >
+              {postCategories.title}
+            </p>
+          </div>
         </div>
         {/* Description */}
         <div>

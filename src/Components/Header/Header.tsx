@@ -29,8 +29,6 @@ function Header({ creatingPost }: HeaderProps) {
     !signedIn && setActivePopup(true);
   }
 
-  console.log(creatingPost, signedIn);
-
   return (
     <>
       {activePopup ? (
