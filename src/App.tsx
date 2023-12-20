@@ -72,7 +72,6 @@ function App() {
                   posts={posts}
                   postsLoading={postsLoading}
                   postsError={postsError}
-                  // setPostsLoading={setPostsLoading}
                 />
               }
             />

@@ -44,6 +44,7 @@ function NewBlogInfo() {
               ავტორი*
             </label>
             <input
+              autoComplete="name"
               required
               className="my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg focus:outline-none text-normal text-gray_ font-400 leading-20"
               id="author"
@@ -67,6 +68,7 @@ function NewBlogInfo() {
             </label>
             <input
               required
+              autoComplete="off"
               className="my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg focus:outline-none text-normal text-gray_ font-400 leading-20"
               type="text"
               name="title"
@@ -88,6 +90,7 @@ function NewBlogInfo() {
           </label>
           <textarea
             required
+            autoComplete="off"
             name="description"
             className="mt-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg h-textarea focus:outline-none resize-none text-normal text-gray_ font-400 leading-20"
             placeholder="შეიყვანეთ აღწერა"
@@ -152,6 +155,7 @@ function NewBlogInfo() {
             ავტორი
           </label>
           <input
+            autoComplete="email"
             className="my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg focus:outline-none text-normal text-gray_ font-400 leading-20"
             type="text"
             name="e-mail"

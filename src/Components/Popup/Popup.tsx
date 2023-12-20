@@ -105,6 +105,8 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
                 type="email"
                 name="email"
                 placeholder="Example@redberry.ge"
+                id="email"
+                autoComplete="email"
                 required
               />
               {loginError && (
