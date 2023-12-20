@@ -25,7 +25,7 @@ function Home() {
 
   return (
     <>
-      <Header />
+      <Header creatingPost={false} />
       {/* Content Container */}
       <div className=" px-main mt-home_container_t py-content_y">
         {/* ბლოგი სათაური */}
