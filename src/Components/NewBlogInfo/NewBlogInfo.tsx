@@ -125,7 +125,7 @@ function NewBlogInfo() {
             >
               კატეგორია*
             </label>
-            <div className="category">
+            <div className="relative">
               <input
                 required
                 className="my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg focus:outline-none text-normal text-gray_ font-400 leading-20"
