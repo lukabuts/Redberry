@@ -5,7 +5,11 @@ import Popup from "../Popup/Popup";
 
 import { Context } from "../../App";
 
-function Header() {
+interface HeaderProps {
+  creatingPost: boolean;
+}
+
+function Header({ creatingPost }: HeaderProps) {
   const [signedIn, _] = useContext(Context);
   const [activePopup, setActivePopup] = useState(false);
 
@@ -24,6 +28,9 @@ function Header() {
   function handleClick() {
     !signedIn && setActivePopup(true);
   }
+
+  console.log(creatingPost, signedIn);
+
   return (
     <>
       {activePopup ? (
@@ -33,18 +40,32 @@ function Header() {
           mainText="შესვლა"
         />
       ) : null}
-      <header className="sticky top-0 flex items-center justify-between bg-white h-header px-main z-header">
+      <header
+        className={`sticky top-0 flex items-center bg-white h-header px-main z-header ${
+          creatingPost && signedIn ? "justify-center" : "justify-between"
+        }`}
+      >
         <Link to="/">
-          <img className="cursor-pointer select-none" src={logo} alt="Logo" />
+          <img
+            width={150}
+            height={24}
+            className="cursor-pointer select-none"
+            src={logo}
+            alt="Logo"
+          />
         </Link>
-        <button onClick={handleClick}>
-          <Link
-            className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
-            to={signedIn ? "/post" : ""}
-          >
-            {signedIn ? "დაამატე ბლოგი" : "შესვლა"}
-          </Link>
-        </button>
+        {creatingPost && signedIn ? (
+          ""
+        ) : (
+          <button onClick={handleClick}>
+            <Link
+              className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
+              to={signedIn ? "/post" : ""}
+            >
+              {signedIn ? "დაამატე ბლოგი" : "შესვლა"}
+            </Link>
+          </button>
+        )}
       </header>
     </>
   );

@@ -3,7 +3,6 @@ import Home from "./Pages/Home/Home";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import CreatePost from "./Pages/CreatePost/CreatePost";
 import NotFound from "./Pages/NotFound/NotFound";
-import Header from "./Components/Header/Header";
 import React, { useState } from "react";
 
 export const Context = React.createContext<
@@ -17,7 +16,6 @@ function App() {
     <>
       <Context.Provider value={[signedIn, setSignedIn]}>
         <Router>
-          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />

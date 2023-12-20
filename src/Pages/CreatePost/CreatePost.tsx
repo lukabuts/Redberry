@@ -1,10 +1,12 @@
 import { Context } from "../../App";
 import { useContext } from "react";
+import Header from "../../Components/Header/Header";
 
 function Post() {
   const [signedIn, _] = useContext(Context);
   return (
     <div>
+      <Header creatingPost={true} />
       {signedIn ? (
         "Create Post"
       ) : (

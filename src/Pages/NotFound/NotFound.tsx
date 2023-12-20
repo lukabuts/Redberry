@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import Header from "../../Components/Header/Header";
 
 function NotFound() {
   return (
     <>
+      <Header creatingPost={false} />
       <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-post">
         <h1 className="text-4xl">გვერდი ვერ მოიძებნა</h1>
         <Link to="/">

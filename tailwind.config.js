@@ -25,6 +25,8 @@ export default {
         successImg: "#14D81C",
         err: "#EA1919",
         err_bg: "#FAF2F3",
+        active_inp: "#5D37F3",
+        active_inp_bg: "#F7F7FF",
       },
       padding: {
         main: "76px",

@@ -5,6 +5,7 @@ import blogbg from "../../assets/images/blogbg.svg";
 import Post from "../../Components/Post/Post";
 // !!! Delete this image
 import test from "../../assets/images/test.svg";
+import Header from "../../Components/Header/Header";
 
 function Home() {
   const filters: any = localStorage.getItem("filters");
@@ -24,6 +25,7 @@ function Home() {
 
   return (
     <>
+      <Header />
       {/* Content Container */}
       <div className=" px-main mt-home_container_t py-content_y">
         {/* ბლოგი სათაური */}

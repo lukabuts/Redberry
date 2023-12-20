@@ -108,7 +108,11 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
                 onChange={handleInputChange}
                 value={userEmail}
                 className={`px-login_inp_x py-login_inp_y rounded-12 border-input  focus:outline-none ${
-                  loginError ? " border-err bg-err_bg" : "border-input_normal"
+                  loginError
+                    ? " border-err bg-err_bg"
+                    : userEmail
+                    ? "border-active_inp bg-active_inp_bg"
+                    : "border-input_normal"
                 }`}
                 type="email"
                 name="email"
