@@ -1,6 +1,7 @@
 import { Context } from "../../App";
 import { useContext } from "react";
 import Header from "../../Components/Header/Header";
+import NewBlogInfo from "../../Components/NewBlogInfo/NewBlogInfo";
 
 function Post() {
   const [signedIn, _] = useContext(Context);
@@ -8,7 +9,7 @@ function Post() {
     <div>
       <Header creatingPost={true} />
       {signedIn ? (
-        "Create Post"
+        <NewBlogInfo />
       ) : (
         <>
           <h1 className="mt-20 text-center text-err text-24">

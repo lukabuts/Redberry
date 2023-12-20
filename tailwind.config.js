@@ -7,6 +7,8 @@ export default {
         header: "80px",
         post_img: "328px",
         successImg: "53px",
+        imgUpload: "180px",
+        textarea: "124px",
       },
       width: {
         successImg: "53px",
@@ -14,6 +16,8 @@ export default {
       maxWidth: {
         post: "408px",
         popup: "480px",
+        blog: "600px",
+        authorInp: "calc(50% - 12px)",
       },
       colors: {
         white: "#fff",
@@ -27,6 +31,8 @@ export default {
         err_bg: "#FAF2F3",
         active_inp: "#5D37F3",
         active_inp_bg: "#F7F7FF",
+        imgUpload: "#F4F3FF",
+        inp_bg: "#FCFCFD",
       },
       padding: {
         main: "76px",
@@ -37,18 +43,14 @@ export default {
         component_item_y: "8px",
         popup_x: "20px",
         popup_y: "40px",
-        login_inp_x: "16px",
-        login_inp_y: "12px",
+        inp_x: "16px",
+        inp_y: "12px",
         small_component_x: "10px",
         small_component_y: "6px",
       },
       margin: {
         home_container_t: "64px",
-      },
-      borderRadius: {
-        header_login: "8px",
-        component_item: "30px",
-        12: "12px",
+        newBlogCont: "40px",
       },
       zIndex: {
         header: 99,
@@ -61,6 +63,7 @@ export default {
         12: "12px",
         20: "20px",
         24: "24px",
+        32: "32px",
       },
       fontWeight: {
         700: 700,
@@ -72,6 +75,7 @@ export default {
         post_desc: "28px",
         32: "32px",
         20: "20px",
+        40: "40px",
       },
       gap: {
         components: "24px",
@@ -80,12 +84,20 @@ export default {
         post_container_x: "32px",
         post_container_y: "56px",
         err: "8px",
+        blog: "40px",
+        addBlog: "24px",
       },
       borderColor: {
         input_normal: "#E4E3EB",
+        imgUpload: "#85858D",
       },
       borderWidth: {
         input: "1px",
+      },
+      borderRadius: {
+        header_login: "8px",
+        component_item: "30px",
+        12: "12px",
       },
       spacing: {
         x_icon: "20px",

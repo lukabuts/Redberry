@@ -31,11 +31,12 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
         console.log(res);
         setSignedIn(true);
         setLoginError(false);
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
         setLoginError(true);
+      })
+      .finally(() => {
         setLoading(false);
       });
     // If user is logged in, Close Popup
@@ -94,7 +95,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
               <input
                 onChange={handleInputChange}
                 value={userEmail}
-                className={`px-login_inp_x py-login_inp_y rounded-12 border-input  focus:outline-none ${
+                className={`px-inp_x py-inp_y rounded-12 border-input  focus:outline-none ${
                   loginError
                     ? " border-err bg-err_bg"
                     : userEmail
