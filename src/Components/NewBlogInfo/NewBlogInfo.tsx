@@ -134,7 +134,10 @@ function NewBlogInfo() {
                 placeholder="აირჩიეთ კატეგორია"
                 id="category"
               />
-              <button className="absolute transform translate-x-1/2 -translate-y-1/2 right-x_icon top-1/2">
+              <button
+                type="button"
+                className="absolute transform translate-x-1/2 -translate-y-1/2 right-x_icon top-1/2"
+              >
                 <img src={arrow_down} alt="Arrow Down" />
               </button>
             </div>
