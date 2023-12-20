@@ -3,7 +3,6 @@ import { useContext } from "react";
 
 function Post() {
   const [signedIn, _] = useContext(Context);
-  console.log(_);
   return (
     <div>
       {signedIn ? (

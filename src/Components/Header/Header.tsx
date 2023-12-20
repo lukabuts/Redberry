@@ -7,7 +7,6 @@ import { Context } from "../../App";
 
 function Header() {
   const [signedIn, _] = useContext(Context);
-  console.log(_);
   const [activePopup, setActivePopup] = useState(false);
 
   useEffect(() => {
