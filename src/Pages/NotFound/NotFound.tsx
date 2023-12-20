@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 function NotFound() {
   return (
     <>
-      
       <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-post">
         <h1 className="text-4xl">გვერდი ვერ მოიძებნა</h1>
         <Link to="/">

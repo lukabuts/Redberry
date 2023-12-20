@@ -6,7 +6,8 @@ import Popup from "../Popup/Popup";
 import { Context } from "../../App";
 
 function Header() {
-  const [signedIn, setSignedIn] = useContext(Context);
+  const [signedIn, _] = useContext(Context);
+  console.log(_);
   const [activePopup, setActivePopup] = useState(false);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ function Header() {
         <button onClick={handleClick}>
           <Link
             className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
-            to={signedIn && "/post"}
+            to={signedIn ? "/post" : ""}
           >
             {signedIn ? "დაამატე ბლოგი" : "შესვლა"}
           </Link>

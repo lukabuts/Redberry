@@ -2,7 +2,8 @@ import { Context } from "../../App";
 import { useContext } from "react";
 
 function Post() {
-  const [signedIn, setSignedIn] = useContext(Context);
+  const [signedIn, _] = useContext(Context);
+  console.log(_);
   return (
     <div>
       {signedIn ? (
