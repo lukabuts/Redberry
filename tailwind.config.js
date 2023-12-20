@@ -23,6 +23,8 @@ export default {
         header_login: "#5D37F3",
         see_more: "#5D37F3",
         successImg: "#14D81C",
+        err: "#EA1919",
+        err_bg: "#FAF2F3",
       },
       padding: {
         main: "76px",
@@ -75,6 +77,7 @@ export default {
         post: "24px",
         post_container_x: "32px",
         post_container_y: "56px",
+        err: "8px",
       },
       borderColor: {
         input_normal: "#E4E3EB",

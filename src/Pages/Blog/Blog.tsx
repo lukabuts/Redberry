@@ -1,12 +1,5 @@
-import Header from "../../Components/Header/Header";
-
 function Blog() {
-  return (
-    <div>
-      <Header />
-      BLOG
-    </div>
-  );
+  return <div>BLOG</div>;
 }
 
 export default Blog;

@@ -39,7 +39,7 @@ function Categories({
             }}
             className={`cursor-pointer rounded-component_item px-component_item_x py-component_item_y ${
               selectedFilters.find((x: string) => x === item.title)
-                ? "border-black_ border-2"
+                ? "border-black border-input"
                 : ""
             }`}
             key={item.id}

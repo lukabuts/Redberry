@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Categories from "../../Components/Categories/Categories";
-import Header from "../../Components/Header/Header";
 import blogbg from "../../assets/images/blogbg.svg";
 import Post from "../../Components/Post/Post";
 // !!! Delete this image
@@ -25,7 +24,6 @@ function Home() {
 
   return (
     <>
-      <Header />
       {/* Content Container */}
       <div className=" px-main mt-home_container_t py-content_y">
         {/* ბლოგი სათაური */}
