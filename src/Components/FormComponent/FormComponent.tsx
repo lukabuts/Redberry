@@ -1,5 +1,6 @@
 import folder_add from "../../assets/images/folder_add.svg";
 import arrow_down from "../../assets/images/arrow_down.svg";
+import error from "../../assets/images/error.svg";
 import { useState } from "react";
 import axios from "axios";
 import Data from "../../Types/Data";
@@ -168,7 +169,7 @@ function NewBlogInfo() {
                 author.trim().length > 0 && !smallAuthor && min2Words && onlyGeo
                   ? "border-success bg-success_bg"
                   : author.trim().length > 0
-                  ? "border-active_inp bg-active_inp_bg"
+                  ? "border-err bg-err_bg"
                   : author.trim().length === 0 &&
                     "border-input_normal bg-inp_bg"
               }`}
@@ -231,6 +232,8 @@ function NewBlogInfo() {
               className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input focus:outline-none text-normal text-gray_ font-400 leading-20 ${
                 title.length > 0 && !smallTitle
                   ? "border-success bg-success_bg"
+                  : title.length > 0
+                  ? "border-err bg-err_bg"
                   : "border-input_normal bg-inp_bg "
               }`}
               type="text"
@@ -269,6 +272,8 @@ function NewBlogInfo() {
             className={`mt-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg h-textarea focus:outline-none resize-none text-normal text-gray_ font-400 leading-20 ${
               description.length > 0 && !smallDesc
                 ? "border-success bg-success_bg"
+                : description.length > 0
+                ? "border-err bg-err_bg"
                 : "border-input_normal bg-inp_bg "
             }`}
             placeholder="შეიყვანეთ აღწერა"
@@ -382,7 +387,7 @@ function NewBlogInfo() {
           </div>
         </div>
         {/* E-mail */}
-        <div className="text-red-400 max-w-authorInp">
+        <div className=" max-w-authorInp">
           <label
             htmlFor="e-mail"
             className="text-black_ text-normal font-500 leading-20"
@@ -393,11 +398,12 @@ function NewBlogInfo() {
             value={email}
             onChange={handleEmail}
             autoComplete="email"
+            spellCheck={false}
             className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input focus:outline-none text-normal text-gray_ font-400 leading-20 ${
               email.trim().length > 0 && validEmail
                 ? "border-success bg-success_bg"
                 : email.trim().length > 0
-                ? "border-active_inp bg-active_inp_bg"
+                ? "border-err bg-err_bg"
                 : email.trim().length === 0 && "border-input_normal bg-inp_bg"
             }`}
             type="text"
@@ -405,6 +411,17 @@ function NewBlogInfo() {
             placeholder="Example@redberry.ge"
             id="e-mail"
           />
+          {/* !11111111 */}
+          <div
+            className={` gap-x-err ${
+              !validEmail && email.trim().length > 0 ? "flex" : "hidden"
+            }`}
+          >
+            <img height={20} width={20} src={error} alt="error" />
+            <span className="font-normal text-err text-12 leading-20">
+              მეილი უნდა მთავრდებოდეს @redberry.ge-ით
+            </span>
+          </div>
         </div>
         {/* Submit Button */}
         <button
