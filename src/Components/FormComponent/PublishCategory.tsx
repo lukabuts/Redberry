@@ -39,8 +39,9 @@ function PublishCategory({
 
   // ! categories Filter
   useEffect(() => {
-    getCategories();
     sessionStorage.setItem("categoriesFilter", categoriesFilter);
+    if (categoriesFilter.length === 0) return;
+    getCategories();
   }, [categoriesFilter]);
 
   // ?? Handle Changes
