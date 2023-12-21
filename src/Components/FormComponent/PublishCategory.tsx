@@ -2,6 +2,7 @@ import axios from "axios";
 import white_x from "../../assets/images/white_x.svg";
 import arrow_down from "../../assets/images/arrow_down.svg";
 import PublishCategoryProps from "../../Types/publishcategoryprops";
+import { useEffect } from "react";
 
 function PublishCategory({
   setPublishDate,
@@ -17,6 +18,26 @@ function PublishCategory({
   loading,
   categoriesFilter,
 }: PublishCategoryProps) {
+  // ?? Setting Items to sessionstorage
+  // ! publish Date
+  useEffect(() => {
+    sessionStorage.setItem("publishDate", publishDate);
+  }, [publishDate]);
+
+  // ! selectedCategories
+  useEffect(() => {
+    sessionStorage.setItem(
+      "selectedCategories",
+      JSON.stringify(selectedCategories)
+    );
+  }, [selectedCategories]);
+
+  // ! general Category Data
+  useEffect(() => {
+    sessionStorage.setItem("categories", JSON.stringify(categories));
+  }, [categories]);
+
+  // ?? Handle Changes
   // ! Handle Date Change
   function handleDate(e: React.ChangeEvent<HTMLInputElement>) {
     const inpValue = e.target.value;

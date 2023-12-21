@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import AuthorTitleProps from "../../Types/authortitleProps";
 
 function AuthorTitle({
@@ -14,38 +15,50 @@ function AuthorTitle({
   smallAuthor,
   smallTitle,
 }: AuthorTitleProps) {
-  // !Handle Author Input
-  function handleAuthor(e: React.ChangeEvent<HTMLInputElement>) {
-    const inpValue = e.target.value;
-    setAuthor(inpValue);
-
+  // ?? Setting changes to sessionstorage
+  // ! Author
+  useEffect(() => {
     // Small input
-    inpValue.replace(/\s/g, "").length < 4
+    author.replace(/\s/g, "").length < 4
       ? setSmallAuthor(true)
       : setSmallAuthor(false);
 
     // Not 2 words
-    inpValue.trim().split(" ").length < 2
+    author.trim().split(" ").length < 2
       ? setmin2Words(false)
       : setmin2Words(true);
 
     // Only Georgian Alphabet
     const georgianRegex = /^[\u10A0-\u10FF\s]+$/;
 
-    if (!georgianRegex.test(inpValue)) {
+    if (!georgianRegex.test(author)) {
       setOnlyGeo(false);
     } else {
       setOnlyGeo(true);
     }
+
+    sessionStorage.setItem("author", author);
+  }, [author, setAuthor, setOnlyGeo, setSmallAuthor, setmin2Words]);
+
+  // !Title
+  useEffect(() => {
+    title.replace(/\s/g, "").length < 2
+      ? setSmallTitle(true)
+      : setSmallTitle(false);
+    sessionStorage.setItem("title", title);
+  }, [title, setSmallTitle]);
+
+  // ?? Handle Changes
+  // ! Handle Author Input
+  function handleAuthor(e: React.ChangeEvent<HTMLInputElement>) {
+    const inpValue = e.target.value;
+    setAuthor(inpValue);
   }
 
   // ! Handle Title Input
   function handleTitle(e: React.ChangeEvent<HTMLInputElement>) {
     const inpValue = e.target.value;
     setTitle(inpValue);
-    inpValue.replace(/\s/g, "").length < 2
-      ? setSmallTitle(true)
-      : setSmallTitle(false);
   }
 
   return (

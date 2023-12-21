@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import error from "../../assets/images/error.svg";
 import EmailBtnProps from "../../Types/EmailBtnProps";
 
@@ -8,13 +9,16 @@ function EmailBtn({
   setValidEmail,
   isEverithingOk,
 }: EmailBtnProps) {
+  // ?? Setting email to localstorage
+  useEffect(() => {
+    email.endsWith("@redberry.ge") ? setValidEmail(true) : setValidEmail(false);
+
+    sessionStorage.setItem("email", email);
+  }, [email, setValidEmail]);
   // ! Handling User E-mail
   function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
     const inputVal = e.target.value;
     setEmail(inputVal);
-    inputVal.endsWith("@redberry.ge")
-      ? setValidEmail(true)
-      : setValidEmail(false);
   }
   return (
     <>

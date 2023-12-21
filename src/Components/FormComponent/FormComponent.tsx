@@ -1,37 +1,66 @@
-import folder_add from "../../assets/images/folder_add.svg";
 import { useEffect, useState } from "react";
 import Data from "../../Types/data";
+import Image from "./Image";
 import AuthorTitle from "./AuthorTitle";
 import Description from "./Description";
 import PublishCategory from "./PublishCategory";
 import EmailBtn from "./EmailBtn";
+import Success from "./Success";
 
 function NewBlogInfo() {
   // Image
   // Author
-  const [author, setAuthor] = useState("");
+  const [author, setAuthor] = useState(sessionStorage.getItem("author") || "");
   const [smallAuthor, setSmallAuthor] = useState(false);
   const [min2Words, setmin2Words] = useState(false);
   const [onlyGeo, setOnlyGeo] = useState(true);
   // Title
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(sessionStorage.getItem("title") || "");
   const [smallTitle, setSmallTitle] = useState(false);
   // Description
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(
+    sessionStorage.getItem("description") || ""
+  );
   const [smallDesc, setSmallDesc] = useState(false);
   // Publish Date
-  const [publishDate, setPublishDate] = useState("");
+  const [publishDate, setPublishDate] = useState(
+    sessionStorage.getItem("publishDate") || ""
+  );
   // Categories
-  const [categories, setCategories] = useState<Data[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+  const savedSelectedCategories: any =
+    sessionStorage.getItem("selectedCategories");
+  const savedCategories: any = sessionStorage.getItem("categories");
+  const [categories, setCategories] = useState<Data[]>(
+    JSON.parse(savedCategories) || []
+  );
+  const [selectedCategories, setSelectedCategories] = useState<number[]>(
+    JSON.parse(savedSelectedCategories) || []
+  );
   const [categoriesFilter, setCategoriesFilter] = useState("");
   const [loading, setLoading] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   // E-mail
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(sessionStorage.getItem("email") || "");
   const [validEmail, setValidEmail] = useState(false);
   // Check if everithing is OK
   const [isEverithingOk, setIsEverithingOk] = useState(false);
+  // Success
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    // Clearing SessionStorage
+    sessionStorage.clear();
+    // Avoid Scrolling While Popup is active
+    const body = document.getElementById("body");
+    if (!body) return;
+    else if (!success) {
+      body.classList.contains("overflow-hidden") &&
+        body.classList.remove("overflow-hidden");
+    } else if (success) {
+      !body.classList.contains("overflow-hidden") &&
+        body.classList.add("overflow-hidden");
+    }
+  }, [success]);
 
   // ! Is everithing ok?
   useEffect(() => {
@@ -45,7 +74,8 @@ function NewBlogInfo() {
       description.trim().length > 0 &&
       !smallDesc &&
       publishDate.length > 0 &&
-      selectedCategories.length > 0
+      selectedCategories.length > 0 &&
+      (email.length === 0 || (email.length > 0 && validEmail))
     ) {
       setIsEverithingOk(true);
     } else {
@@ -62,7 +92,14 @@ function NewBlogInfo() {
     smallDesc,
     publishDate,
     selectedCategories,
+    email,
+    validEmail,
   ]);
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSuccess(true);
+  }
 
   return (
     <div className="flex flex-col w-full m-auto gap-blog max-w-blog my-newBlogCont">
@@ -70,31 +107,12 @@ function NewBlogInfo() {
         ბლოგის დამატება
       </h1>
 
-      <form className="flex flex-col gap-addBlog">
+      {/* Success MSG */}
+      {success ? <Success /> : ""}
+
+      <form className="flex flex-col gap-addBlog" onSubmit={handleSubmit}>
         {/* Image */}
-        <div>
-          <label
-            htmlFor="image"
-            className="text-black_ text-normal font-500 leading-20"
-          >
-            აირჩიეთ ფოტო
-          </label>
-          <div className="relative flex flex-col items-center justify-center border-dashed gap-addBlog h-imgUpload bg-imgUpload border-input border-imgUpload rounded-12">
-            <img width={40} height={40} src={folder_add} alt="Add image" />
-            <p className="text-black_ text-normal font-400 leading-20 ">
-              ჩააგდეთ ფაილი აქ ან{" "}
-              <span className="underline font-500">აირჩიეთ ფაილი</span>
-            </p>
-            <input
-              required
-              className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-              type="file"
-              name="image"
-              accept="image/*"
-              id="image"
-            />
-          </div>
-        </div>
+        <Image />
         {/* Author, Title */}
         <AuthorTitle
           setAuthor={setAuthor}

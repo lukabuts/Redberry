@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import DescriptionProps from "../../Types/descriptionProps";
 
 function Description({
@@ -7,13 +7,20 @@ function Description({
   setDescription,
   setSmallDesc,
 }: DescriptionProps) {
+  // ?? Setting Description to sessionstorage
+  useEffect(() => {
+    console.log("hi");
+
+    description.replace(/\s/g, "").length < 2
+      ? setSmallDesc(true)
+      : setSmallDesc(false);
+    sessionStorage.setItem("description", description);
+  }, [description, setSmallDesc]);
+
   // ! Handle Description Textarea
   function handleDesc(e: ChangeEvent<HTMLTextAreaElement>) {
     const inpValue = e.target.value;
     setDescription(inpValue);
-    inpValue.replace(/\s/g, "").length < 2
-      ? setSmallDesc(true)
-      : setSmallDesc(false);
   }
 
   return (
@@ -27,14 +34,15 @@ function Description({
       <textarea
         required
         onChange={handleDesc}
+        value={description}
         autoComplete="off"
         name="description"
-        className={`mt-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg h-textarea focus:outline-none resize-none text-normal text-gray_ font-400 leading-20 ${
-          description.length > 0 && !smallDesc
+        className={`mt-[8px] w-full px-inp_x py-inp_y rounded-12 border-input h-textarea focus:outline-none resize-none text-normal text-gray_ font-400 leading-20 ${
+          description.trim().length === 0
+            ? "border-input_normal bg-inp_bg "
+            : !smallDesc
             ? "border-success bg-success_bg"
-            : description.length > 0
-            ? "border-err bg-err_bg"
-            : "border-input_normal bg-inp_bg "
+            : "border-err bg-err_bg"
         }`}
         placeholder="შეიყვანეთ აღწერა"
         cols={30}
