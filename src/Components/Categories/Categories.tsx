@@ -18,6 +18,14 @@ function Categories({ selectedFilters, setSelectedFilters }: CategoriesProps) {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    if (selectedFilters.length === 0) {
+      localStorage.removeItem("filters");
+      return;
+    }
+    localStorage.setItem("filters", JSON.stringify(selectedFilters));
+  }, [selectedFilters]);
+
   function handleClick(id: number) {
     const find = selectedFilters.find((x) => x === id);
     if (!find) {
@@ -26,14 +34,6 @@ function Categories({ selectedFilters, setSelectedFilters }: CategoriesProps) {
       setSelectedFilters(selectedFilters.filter((x) => x !== id));
     }
   }
-
-  useEffect(() => {
-    if (selectedFilters.length === 0) {
-      localStorage.removeItem("filters");
-      return;
-    }
-    localStorage.setItem("filters", JSON.stringify(selectedFilters));
-  }, [selectedFilters]);
 
   return (
     <>

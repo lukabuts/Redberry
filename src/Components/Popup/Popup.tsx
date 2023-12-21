@@ -79,7 +79,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
         <form onSubmit={handleSubmit} className="flex flex-col">
           {signedIn ? (
             <>
-              <div className="flex items-center self-center justify-center rounded-full w-successImg h-successImg bg-successImg mb-[21px]">
+              <div className="flex items-center self-center justify-center rounded-full w-successImg h-successImg bg-success mb-[21px]">
                 <img src={vector} alt="Success" />
               </div>
               <p className="self-center">{successText}</p>

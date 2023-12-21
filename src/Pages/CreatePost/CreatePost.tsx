@@ -1,7 +1,7 @@
 import { Context } from "../../App";
 import { useContext } from "react";
 import Header from "../../Components/Header/Header";
-import NewBlogInfo from "../../Components/NewBlogInfo/NewBlogInfo";
+import NewBlogInfo from "../../Components/FormComponent/FormComponent";
 
 function Post() {
   const [signedIn, _] = useContext(Context);
