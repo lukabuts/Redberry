@@ -5,13 +5,7 @@ import Categories from "../../Components/Categories/Categories";
 import blogbg from "../../assets/images/blogbg.svg";
 import Post from "../../Components/Post/Post";
 import Header from "../../Components/Header/Header";
-import Posts from "../../Types/Posts";
-
-interface HomeProps {
-  posts: Posts[];
-  postsLoading: boolean;
-  postsError: boolean;
-}
+import HomeProps from "../../Types/homeProps";
 
 function Home({ posts, postsLoading, postsError }: HomeProps) {
   const filters: any = localStorage.getItem("filters");

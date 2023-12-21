@@ -1,16 +1,6 @@
-import Data from "../../Types/Data";
 import arrow from "../../assets/images/arrow.png";
 import { Link } from "react-router-dom";
-
-interface PostProps {
-  img: string;
-  author: string;
-  date: string;
-  id: number;
-  title: string;
-  desc: string;
-  postCategories: Data;
-}
+import PostProps from "../../Types/postProps";
 
 function Post({
   img,

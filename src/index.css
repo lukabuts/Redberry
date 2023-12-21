@@ -17,7 +17,7 @@
   }
 
   .specialScrollbar::-webkit-scrollbar {
-    width: 1px !important;
+    height: 4px;
   }
 
   .specialScrollbar::-webkit-scrollbar-track {

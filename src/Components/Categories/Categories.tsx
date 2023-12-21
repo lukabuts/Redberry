@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Data from "../../Types/Data";
+import Data from "../../Types/data";
 import axios from "axios";
 interface CategoriesProps {
   selectedFilters: number[];

@@ -2,12 +2,8 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import { useEffect, useState, useContext } from "react";
 import Popup from "../Popup/Popup";
-
 import { Context } from "../../App";
-
-interface HeaderProps {
-  creatingPost: boolean;
-}
+import HeaderProps from "../../Types/headerProps";
 
 function Header({ creatingPost }: HeaderProps) {
   const [signedIn, _] = useContext(Context);

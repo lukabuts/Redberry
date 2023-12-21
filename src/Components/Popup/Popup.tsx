@@ -4,12 +4,7 @@ import x from "../../assets/images/x.svg";
 import vector from "../../assets/images/vector.svg";
 import error from "../../assets/images/error.svg";
 import { Context } from "../../App";
-
-interface PopupProps {
-  successText: string;
-  mainText: string;
-  setActivePopup: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import PopupProps from "../../Types/popupProps";
 
 function Popup({ setActivePopup, mainText, successText }: PopupProps) {
   const [userEmail, setUserEmail] = useState("");
