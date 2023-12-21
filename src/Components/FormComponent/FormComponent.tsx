@@ -37,7 +37,7 @@ function NewBlogInfo() {
     JSON.parse(savedSelectedCategories) || []
   );
   const [categoriesFilter, setCategoriesFilter] = useState(
-    localStorage.getItem("categoriesFilter") || ""
+    sessionStorage.getItem("categoriesFilter") || ""
   );
   const [loading, setLoading] = useState(false);
   const [showCategories, setShowCategories] = useState(false);

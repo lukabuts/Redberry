@@ -39,6 +39,7 @@ function PublishCategory({
 
   // ! categories Filter
   useEffect(() => {
+    getCategories();
     sessionStorage.setItem("categoriesFilter", categoriesFilter);
   }, [categoriesFilter]);
 
@@ -126,7 +127,6 @@ function PublishCategory({
             <input
               onChange={(e) => {
                 setCategoriesFilter(e.target.value.trim());
-                getCategories();
               }}
               value={categoriesFilter}
               className="flex-1 focus:outline-none text-normal text-gray_ font-400 leading-20"
