@@ -3,6 +3,7 @@ import arrow_down from "../../assets/images/arrow_down.svg";
 import { useState } from "react";
 import axios from "axios";
 import Data from "../../Types/Data";
+import { ChangeEvent } from "react";
 
 function NewBlogInfo() {
   // Author
@@ -27,7 +28,7 @@ function NewBlogInfo() {
   const [validEmail, setValidEmail] = useState(false);
 
   // !Handle Author Input
-  function handleAuthor(e) {
+  function handleAuthor(e: React.ChangeEvent<HTMLInputElement>) {
     const inpValue = e.target.value;
     setAuthor(inpValue);
 
@@ -52,7 +53,7 @@ function NewBlogInfo() {
   }
 
   // ! Handle Title Input
-  function handleTitle(e) {
+  function handleTitle(e: React.ChangeEvent<HTMLInputElement>) {
     const inpValue = e.target.value;
     setTitle(inpValue);
     inpValue.replace(/\s/g, "").length < 2
@@ -61,7 +62,7 @@ function NewBlogInfo() {
   }
 
   // ! Handle Description Textarea
-  function handleDesc(e) {
+  function handleDesc(e: ChangeEvent<HTMLTextAreaElement>) {
     const inpValue = e.target.value;
     setDescription(inpValue);
     inpValue.replace(/\s/g, "").length < 2
@@ -70,14 +71,16 @@ function NewBlogInfo() {
   }
 
   // ! Handle Date Change
-  function handleDate(e) {
+  function handleDate(e: React.ChangeEvent<HTMLInputElement>) {
     const inpValue = e.target.value;
     setPublishDate(inpValue);
   }
   // ? Get new Date
-  function getFreshDate(e) {
-    if (!e.target.min) {
-      e.target.min = new Date().toISOString().split("T")[0];
+  function getFreshDate(e: React.MouseEvent<HTMLInputElement>) {
+    const target = e.target as HTMLInputElement;
+
+    if (!target.min) {
+      target.min = new Date().toISOString().split("T")[0];
     }
   }
 
@@ -101,7 +104,7 @@ function NewBlogInfo() {
   }
 
   // ! Handling User E-mail
-  function handleEmail(e) {
+  function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
     const inputVal = e.target.value;
     setEmail(inputVal);
     inputVal.endsWith("@redberry.ge")
