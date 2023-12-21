@@ -37,6 +37,11 @@ function PublishCategory({
     sessionStorage.setItem("categories", JSON.stringify(categories));
   }, [categories]);
 
+  // ! categories Filter
+  useEffect(() => {
+    sessionStorage.setItem("categoriesFilter", categoriesFilter);
+  }, [categoriesFilter]);
+
   // ?? Handle Changes
   // ! Handle Date Change
   function handleDate(e: React.ChangeEvent<HTMLInputElement>) {
@@ -123,6 +128,7 @@ function PublishCategory({
                 setCategoriesFilter(e.target.value.trim());
                 getCategories();
               }}
+              value={categoriesFilter}
               className="flex-1 focus:outline-none text-normal text-gray_ font-400 leading-20"
               type="choose"
               name="Category"
@@ -181,6 +187,7 @@ function PublishCategory({
                     <div
                       onClick={() => {
                         handleSelectedCategory(category.id);
+                        setCategoriesFilter("");
                       }}
                       className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
                       key={category.id}

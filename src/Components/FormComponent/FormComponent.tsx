@@ -36,7 +36,9 @@ function NewBlogInfo() {
   const [selectedCategories, setSelectedCategories] = useState<number[]>(
     JSON.parse(savedSelectedCategories) || []
   );
-  const [categoriesFilter, setCategoriesFilter] = useState("");
+  const [categoriesFilter, setCategoriesFilter] = useState(
+    localStorage.getItem("categoriesFilter") || ""
+  );
   const [loading, setLoading] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   // E-mail
@@ -48,8 +50,6 @@ function NewBlogInfo() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    // Clearing SessionStorage
-    sessionStorage.clear();
     // Avoid Scrolling While Popup is active
     const body = document.getElementById("body");
     if (!body) return;
@@ -99,6 +99,8 @@ function NewBlogInfo() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSuccess(true);
+    // Clearing SessionStorage
+    sessionStorage.clear();
   }
 
   return (

@@ -9,8 +9,6 @@ function Description({
 }: DescriptionProps) {
   // ?? Setting Description to sessionstorage
   useEffect(() => {
-    console.log("hi");
-
     description.replace(/\s/g, "").length < 2
       ? setSmallDesc(true)
       : setSmallDesc(false);
