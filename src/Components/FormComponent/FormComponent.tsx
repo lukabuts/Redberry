@@ -1,7 +1,8 @@
 import folder_add from "../../assets/images/folder_add.svg";
 import arrow_down from "../../assets/images/arrow_down.svg";
 import error from "../../assets/images/error.svg";
-import { useState } from "react";
+import white_x from "../../assets/images/white_x.svg";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Data from "../../Types/Data";
 import { ChangeEvent } from "react";
@@ -22,11 +23,53 @@ function NewBlogInfo() {
   const [publishDate, setPublishDate] = useState("");
   // Categories
   const [categories, setCategories] = useState<Data[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
+  const [categoriesFilter, setCategoriesFilter] = useState("");
   const [loading, setLoading] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   // E-mail
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
+  const [longEmail, setLongEmail] = useState(false);
+  // Check if everithing is OK
+  const [isEverithingOk, setIsEverithingOk] = useState(false);
+
+  // ! Is everithing ok?
+  useEffect(() => {
+    if (
+      author.trim().length > 0 &&
+      !smallAuthor &&
+      min2Words &&
+      onlyGeo &&
+      title.trim().length > 0 &&
+      !smallTitle &&
+      description.trim().length > 0 &&
+      !smallDesc &&
+      publishDate.length > 0 &&
+      selectedCategories.length > 0 &&
+      email.trim().length > 0 &&
+      validEmail &&
+      !longEmail
+    ) {
+      setIsEverithingOk(true);
+    } else {
+      setIsEverithingOk(false);
+    }
+  }, [
+    author,
+    smallAuthor,
+    min2Words,
+    onlyGeo,
+    title,
+    smallTitle,
+    description,
+    smallDesc,
+    publishDate,
+    selectedCategories,
+    email,
+    validEmail,
+    longEmail,
+  ]);
 
   // !Handle Author Input
   function handleAuthor(e: React.ChangeEvent<HTMLInputElement>) {
@@ -111,15 +154,24 @@ function NewBlogInfo() {
     inputVal.endsWith("@redberry.ge")
       ? setValidEmail(true)
       : setValidEmail(false);
+
+    inputVal.trim().split(" ").length > 1
+      ? setLongEmail(true)
+      : setLongEmail(false);
   }
 
-  // useEffect(() => {
-  //   if (selectedFilters.length === 0) {
-  //     localStorage.removeItem("filters");
-  //     return;
-  //   }
-  //   localStorage.setItem("filters", JSON.stringify(selectedFilters));
-  // }, [selectedFilters]);
+  // ! handle Selectedcategory change
+  function handleSelectedCategory(id: number) {
+    if (selectedCategories.includes(id)) return;
+    setSelectedCategories([...selectedCategories, id]);
+  }
+
+  // ! unselect Category
+  function unSelectCategory(id: number) {
+    if (selectedCategories.includes(id)) {
+      setSelectedCategories(selectedCategories.filter((x) => x !== id));
+    }
+  }
 
   return (
     <div className="flex flex-col w-full m-auto gap-blog max-w-blog my-newBlogCont">
@@ -328,20 +380,97 @@ function NewBlogInfo() {
             >
               კატეგორია*
             </label>
-            <div className="relative flex my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg ">
-              <input
-                required
-                onFocus={getCategories}
-                className="flex-1 focus:outline-none text-normal text-gray_ font-400 leading-20"
-                type="text"
-                name="Category"
-                placeholder="აირჩიეთ კატეგორია"
-                id="category"
-                autoComplete="none"
-              />
+            <div className=" flex relative my-[8px] w-full px-inp_x  rounded-12 border-input border-input_normal bg-inp_bg">
+              <div className="relative flex flex-1 pt-inp_y specialScrollbar">
+                <input
+                  onChange={(e) => {
+                    setCategoriesFilter(e.target.value.trim());
+                  }}
+                  className="flex-1 focus:outline-none text-normal text-gray_ font-400 leading-20"
+                  type="choose"
+                  name="Category"
+                  placeholder="აირჩიეთ კატეგორია"
+                  id="category"
+                  autoComplete="none"
+                />
+
+                {/* Show selected Categories */}
+                <div className="absolute top-0 flex items-center h-full gap-[8px] ">
+                  {categories
+                    .filter((category) =>
+                      selectedCategories.includes(category.id)
+                    )
+                    .map((category) => {
+                      return (
+                        <div
+                          className="flex cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500 w-max gap-[8px]"
+                          key={category.id}
+                          style={{ background: category.background_color }}
+                        >
+                          <p
+                            className="text-12"
+                            style={{ color: category.text_color }}
+                          >
+                            {category.title}
+                          </p>
+                          <button
+                            onClick={() => {
+                              unSelectCategory(category.id);
+                            }}
+                          >
+                            <img src={white_x} alt="remove" />
+                          </button>
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+              {/* Show Categories */}
+              <div
+                className={` bottom-[-123px] left-0 flex flex-wrap w-full p-[16px] bg-white gap-[8px] rounded-12 h-[120px] overflow-y-scroll items-start ${
+                  !showCategories ||
+                  selectedCategories.length === categories.length
+                    ? "hidden"
+                    : "absolute"
+                }`}
+              >
+                {!loading ? (
+                  categories
+                    .filter((category) => {
+                      return (
+                        !selectedCategories.includes(category.id) &&
+                        category.title.includes(categoriesFilter)
+                      );
+                    })
+                    .map((category) => {
+                      return (
+                        <div
+                          onClick={() => {
+                            handleSelectedCategory(category.id);
+                          }}
+                          className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
+                          key={category.id}
+                          style={{ background: category.background_color }}
+                        >
+                          <p
+                            className="text-12 "
+                            style={{ color: category.text_color }}
+                          >
+                            {category.title}
+                          </p>
+                        </div>
+                      );
+                    })
+                ) : (
+                  <h1 className="w-full text-center text-normal">
+                    იტვირთება კომპონენტები...
+                  </h1>
+                )}
+              </div>
               {/* Button */}
               <button
                 type="button"
+                className="pl-[5px]"
                 onClick={() => {
                   showCategories ? setShowCategories(false) : getCategories();
                 }}
@@ -354,35 +483,6 @@ function NewBlogInfo() {
                   alt="Arrow Down"
                 />
               </button>
-              {/* Show Categories */}
-              <div
-                className={` bottom-[-123px] left-0 flex flex-wrap w-full p-[16px] bg-white gap-[8px] rounded-12 h-[120px] max-h-[120px] overflow-y-scroll ${
-                  !showCategories ? "hidden" : "absolute"
-                }`}
-              >
-                {!loading ? (
-                  categories.map((category) => {
-                    return (
-                      <div
-                        className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
-                        key={category.id}
-                        style={{ background: category.background_color }}
-                      >
-                        <p
-                          className="text-12 "
-                          style={{ color: category.text_color }}
-                        >
-                          {category.title}
-                        </p>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <h1 className="w-full text-center text-normal">
-                    იტვირთება კომპონენტები...
-                  </h1>
-                )}
-              </div>
             </div>
           </div>
         </div>
@@ -419,13 +519,18 @@ function NewBlogInfo() {
           >
             <img height={20} width={20} src={error} alt="error" />
             <span className="font-normal text-err text-12 leading-20">
-              მეილი უნდა მთავრდებოდეს @redberry.ge-ით
+              {longEmail
+                ? "მეილი უნდა შედგებოდეს ერთი სიტყვისგან"
+                : !validEmail
+                ? "მეილი უნდა მთავრდებოდეს @redberry.ge-ით"
+                : ""}
             </span>
           </div>
         </div>
         {/* Submit Button */}
         <button
-          className="self-end w-full text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login max-w-authorInp"
+          disabled={!isEverithingOk}
+          className="self-end w-full text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login max-w-authorInp disabled:bg-disabled_btn disabled:text-white disabled:cursor-not-allowed"
           type="submit"
         >
           გამოქვეყნება

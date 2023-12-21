@@ -124,9 +124,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
             onClick={() => {
               signedIn && closePopup();
             }}
-            className={`text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login mt-[24px] ${
-              loading && "bg-opacity-[0.8] cursor-not-allowed"
-            }`}
+            className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login mt-[24px] disabled:bg-disabled_btn disabled:text-white disabled:cursor-wait "
             type="submit"
           >
             {signedIn ? "კარგი" : "შესვლა"}

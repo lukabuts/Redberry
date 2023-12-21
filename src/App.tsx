@@ -27,7 +27,6 @@ function App() {
     axios
       .get("https://api.blog.redberryinternship.ge/api/token")
       .then((res) => {
-        console.log(res);
         setToken(res.data.token);
       })
       .catch((err) => {

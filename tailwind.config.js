@@ -12,6 +12,7 @@ export default {
       },
       width: {
         successImg: "53px",
+        40: "40px",
       },
       maxWidth: {
         post: "408px",
@@ -34,6 +35,7 @@ export default {
         active_inp_bg: "#F7F7FF",
         imgUpload: "#F4F3FF",
         inp_bg: "#FCFCFD",
+        disabled_btn: "#E4E3EB",
       },
       padding: {
         main: "76px",
