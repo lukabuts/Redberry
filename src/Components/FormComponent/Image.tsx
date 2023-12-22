@@ -43,7 +43,7 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
       const file = new File([blob], "image.jpg", { type: "image/jpeg" });
       setImage(file);
     }
-  }, []);
+  }, [setImage]);
 
   // Convert data URL to Blob
   function dataURLtoBlob(dataURL: string): Blob {

@@ -1,6 +1,5 @@
 import x from "../../assets/images/x.svg";
 import vector from "../../assets/images/vector.svg";
-import { Link } from "react-router-dom";
 import NotificationProps from "../../Types/notificationProps";
 
 function Notification({
@@ -40,13 +39,14 @@ function Notification({
           {message}
         </h5>
 
-        <button onClick={closePopup} className="flex-1 flex mt-[48px]">
-          <Link
-            className="flex-1 text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
-            to={resultError ? "/post" : success && "/"}
-          >
-            {buttonInput}
-          </Link>
+        <button
+          onClick={() => {
+            closePopup();
+            success && !resultError && window.open("/");
+          }}
+          className="flex-1 mt-[48px] text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
+        >
+          {buttonInput}
         </button>
       </div>
     </div>
