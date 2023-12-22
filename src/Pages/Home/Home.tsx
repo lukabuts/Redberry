@@ -41,7 +41,9 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
                 if (selectedFilters.length === 0) {
                   return post;
                 }
-                return selectedFilters.includes(post.categories[0].id);
+                return post.categories.some((x) => {
+                  return selectedFilters.includes(x.id);
+                });
               })
               .map((post) => (
                 <Post
