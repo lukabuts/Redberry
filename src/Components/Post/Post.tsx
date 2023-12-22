@@ -12,8 +12,7 @@ function Post({
   postCategories,
 }: PostProps) {
   return (
-    // ! Remove Key here !
-    <div key={id} className="flex flex-col gap-post max-w-post">
+    <div className="flex flex-col gap-post w-post">
       {/* Img */}
       <div className="flex justify-center overflow-hidden bg-gray-500 h-post_img rounded-12">
         <img src={img} alt={title} className="object-contain" />
@@ -55,7 +54,7 @@ function Post({
           <button>
             <Link
               className="flex text-normal font-500 text-see_more"
-              to="/blog"
+              to={`/blog-${id}`}
             >
               სრულად ნახვა
               <img src={arrow} alt="arrow" />

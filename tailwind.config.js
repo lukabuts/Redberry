@@ -14,12 +14,14 @@ export default {
       width: {
         successImg: "53px",
         40: "40px",
+        post: "408px",
       },
       maxWidth: {
         post: "408px",
         popup: "480px",
         blog: "600px",
         authorInp: "calc(50% - 12px)",
+        whole_post: "720px",
       },
       colors: {
         white: "#fff",
@@ -56,6 +58,8 @@ export default {
       margin: {
         home_container_t: "64px",
         newBlogCont: "40px",
+        whole_post_t: "40px",
+        whole_post_b: "100px",
       },
       zIndex: {
         header: 99,
@@ -91,6 +95,7 @@ export default {
         err: "8px",
         blog: "40px",
         addBlog: "24px",
+        whole_post_info: "24px",
       },
       borderColor: {
         input_normal: "#E4E3EB",

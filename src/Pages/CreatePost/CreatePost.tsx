@@ -4,7 +4,7 @@ import Header from "../../Components/Header/Header";
 import FormComponent from "../../Components/FormComponent/FormComponent";
 import BackBtn from "../../Components/BackBtn/BackBtn";
 
-function Post() {
+function CreatePost() {
   const [signedIn, _] = useContext(Context);
   return (
     <div>
@@ -23,4 +23,4 @@ function Post() {
   );
 }
 
-export default Post;
+export default CreatePost;

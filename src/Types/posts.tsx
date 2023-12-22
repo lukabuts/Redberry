@@ -8,6 +8,7 @@ type Posts = {
   publish_date: string;
   categories: Data[];
   author: string;
+  email?: string;
 };
 
 export default Posts;

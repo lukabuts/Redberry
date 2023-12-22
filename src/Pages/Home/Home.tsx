@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-// import axios from "axios";
 import Categories from "../../Components/Categories/Categories";
 import blogbg from "../../assets/images/blogbg.svg";
 import Post from "../../Components/Post/Post";

@@ -1,10 +1,11 @@
 import Blog from "./Pages/Blog/Blog";
 import Home from "./Pages/Home/Home";
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import CreatePost from "./Pages/CreatePost/CreatePost";
 import NotFound from "./Pages/NotFound/NotFound";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CreatePost from "./Pages/CreatePost/CreatePost";
+import Posts from "./Types/posts";
 
 export const Context = React.createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>]
@@ -16,7 +17,7 @@ function App() {
   const [signedIn, setSignedIn] = useState(JSON.parse(localValue) || false);
 
   const savedtoken = localStorage.getItem("token") || "";
-  const [token, setToken] = useState(savedtoken || "");
+  const [token, setToken] = useState(savedtoken);
   const [postsLoading, setPostsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [postsError, setPostsError] = useState(false);
@@ -46,6 +47,8 @@ function App() {
       })
       .then((res) => {
         setPosts(res.data.data);
+        console.log(res.data.data);
+
         setPostsError(false);
       })
       .catch((err) => {
@@ -54,6 +57,8 @@ function App() {
       })
       .finally(() => setPostsLoading(false));
   }, [token]);
+
+  console.log(posts);
 
   // Setting Token To LocalStorage
   useEffect(() => {
@@ -74,9 +79,24 @@ function App() {
                 />
               }
             />
-            <Route path="/blog" element={<Blog />} />
+            {posts.map((post: Posts) => {
+              return (
+                <Route
+                  key={post.id}
+                  path={`/blog-${post.id}`}
+                  element={
+                    <Blog
+                      posts={posts}
+                      postsLoading={postsLoading}
+                      postsError={postsError}
+                      post={post}
+                    />
+                  }
+                />
+              );
+            })}
             <Route path="/post" element={<CreatePost />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={postsLoading ? "" : <NotFound />} />
           </Routes>
         </Router>
       </Context.Provider>
