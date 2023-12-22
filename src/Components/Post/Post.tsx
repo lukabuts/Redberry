@@ -11,6 +11,13 @@ function Post({
   desc,
   postCategories,
 }: PostProps) {
+  function scrollTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <div className="flex flex-col gap-post w-post">
       {/* Img */}
@@ -51,7 +58,7 @@ function Post({
         </div>
         {/* See More */}
         <div>
-          <button>
+          <button onClick={scrollTop}>
             <Link
               className="flex text-normal font-500 text-see_more"
               to={`/blog-${id}`}
