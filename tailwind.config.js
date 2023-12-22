@@ -106,6 +106,8 @@ export default {
       },
       spacing: {
         x_icon: "20px",
+        back_icon_t: "120px",
+        back_icon_l: "4rem",
       },
     },
   },

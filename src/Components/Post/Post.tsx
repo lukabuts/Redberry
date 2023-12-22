@@ -15,8 +15,8 @@ function Post({
     // ! Remove Key here !
     <div key={id} className="flex flex-col gap-post max-w-post">
       {/* Img */}
-      <div className="flex items-center justify-center overflow-hidden bg-gray-500 h-post_img rounded-12">
-        <img src={img} alt={title} />
+      <div className="flex justify-center overflow-hidden bg-gray-500 h-post_img rounded-12">
+        <img src={img} alt={title} className="object-contain" />
       </div>
       {/* Info */}
       <div className="flex flex-col gap-post_info">
