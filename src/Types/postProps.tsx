@@ -6,5 +6,5 @@ export default interface PostProps {
   id: number;
   title: string;
   desc: string;
-  postCategories: Data;
+  postCategories: Data[];
 }

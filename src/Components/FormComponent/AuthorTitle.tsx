@@ -37,7 +37,12 @@ function AuthorTitle({
       setOnlyGeo(true);
     }
 
+    if (!author) return;
     sessionStorage.setItem("author", author);
+
+    return () => {
+      sessionStorage.removeItem("author");
+    };
   }, [author, setAuthor, setOnlyGeo, setSmallAuthor, setmin2Words]);
 
   // !Title
@@ -45,7 +50,13 @@ function AuthorTitle({
     title.replace(/\s/g, "").length < 2
       ? setSmallTitle(true)
       : setSmallTitle(false);
+
+    if (!title) return;
     sessionStorage.setItem("title", title);
+
+    return () => {
+      sessionStorage.removeItem("title");
+    };
   }, [title, setSmallTitle]);
 
   // ?? Handle Changes

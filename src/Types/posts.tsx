@@ -6,7 +6,7 @@ type Posts = {
   description: string;
   image: string;
   publish_date: string;
-  categories: Data;
+  categories: Data[];
   author: string;
 };
 

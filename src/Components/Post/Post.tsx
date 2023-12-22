@@ -30,18 +30,19 @@ function Post({
         </div>
         {/* Categoories */}
         <div className="flex flex-wrap gap-post_info">
-          <div
-            className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
-            key={postCategories.id}
-            style={{ background: postCategories.background_color }}
-          >
-            <p
-              className="text-12 "
-              style={{ color: postCategories.text_color }}
-            >
-              {postCategories.title}
-            </p>
-          </div>
+          {postCategories.map((category) => {
+            return (
+              <div
+                className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
+                key={category.id}
+                style={{ background: category.background_color }}
+              >
+                <p className="text-12 " style={{ color: category.text_color }}>
+                  {category.title}
+                </p>
+              </div>
+            );
+          })}
         </div>
         {/* Description */}
         <div>

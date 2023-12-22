@@ -4,4 +4,5 @@ export default interface EmailBtnProps {
   validEmail: boolean;
   setValidEmail: React.Dispatch<React.SetStateAction<boolean>>;
   isEverithingOk: boolean;
+  loadingRes: boolean;
 }

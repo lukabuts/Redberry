@@ -12,7 +12,13 @@ function Description({
     description.replace(/\s/g, "").length < 2
       ? setSmallDesc(true)
       : setSmallDesc(false);
+
+    if (!description) return;
     sessionStorage.setItem("description", description);
+
+    return () => {
+      sessionStorage.removeItem('description')
+    }
   }, [description, setSmallDesc]);
 
   // ! Handle Description Textarea

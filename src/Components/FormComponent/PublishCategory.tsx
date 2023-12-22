@@ -21,27 +21,49 @@ function PublishCategory({
   // ?? Setting Items to sessionstorage
   // ! publish Date
   useEffect(() => {
+    if (!publishDate) return;
     sessionStorage.setItem("publishDate", publishDate);
+
+    return () => {
+      sessionStorage.removeItem("publishDate");
+    };
   }, [publishDate]);
 
   // ! selectedCategories
   useEffect(() => {
+    if (selectedCategories.length === 0) return;
     sessionStorage.setItem(
       "selectedCategories",
       JSON.stringify(selectedCategories)
     );
+
+    return () => {
+      sessionStorage.removeItem("selectedCategories");
+    };
   }, [selectedCategories]);
 
   // ! general Category Data
   useEffect(() => {
+    if (categories.length === 0) return;
     sessionStorage.setItem("categories", JSON.stringify(categories));
+
+    return () => {
+      sessionStorage.removeItem("categories");
+    };
   }, [categories]);
 
   // ! categories Filter
   useEffect(() => {
+    if (categoriesFilter.length === 0) {
+      setShowCategories(false);
+      return;
+    }
     sessionStorage.setItem("categoriesFilter", categoriesFilter);
-    if (categoriesFilter.length === 0) return;
     getCategories();
+
+    return () => {
+      sessionStorage.removeItem("categoriesFilter");
+    };
   }, [categoriesFilter]);
 
   // ?? Handle Changes

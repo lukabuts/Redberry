@@ -8,6 +8,7 @@ export default {
         post_img: "328px",
         successImg: "53px",
         imgUpload: "180px",
+        imgUploaded: "56px",
         textarea: "124px",
       },
       width: {
@@ -34,6 +35,7 @@ export default {
         active_inp: "#5D37F3",
         active_inp_bg: "#F7F7FF",
         imgUpload: "#F4F3FF",
+        imgUploaded: "#F2F2FA",
         inp_bg: "#FCFCFD",
         disabled_btn: "#E4E3EB",
       },

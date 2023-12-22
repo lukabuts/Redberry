@@ -8,12 +8,18 @@ function EmailBtn({
   validEmail,
   setValidEmail,
   isEverithingOk,
+  loadingRes,
 }: EmailBtnProps) {
   // ?? Setting email to localstorage
+
   useEffect(() => {
     email.endsWith("@redberry.ge") ? setValidEmail(true) : setValidEmail(false);
-
+    if (!email) return;
     sessionStorage.setItem("email", email);
+
+    return () => {
+      sessionStorage.removeItem("email");
+    };
   }, [email, setValidEmail]);
   // ! Handling User E-mail
   function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
@@ -59,8 +65,8 @@ function EmailBtn({
       </div>
       {/* Submit Button */}
       <button
-        disabled={!isEverithingOk}
-        className="self-end w-full text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login max-w-authorInp disabled:bg-disabled_btn disabled:text-white disabled:cursor-not-allowed"
+        disabled={!isEverithingOk || loadingRes}
+        className="self-end w-full text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login max-w-authorInp disabled:bg-disabled_btn disabled:text-white disabled:cursor-not-allowed "
         type="submit"
       >
         გამოქვეყნება

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import Data from "../../Types/data";
 import Image from "./Image";
@@ -5,10 +6,13 @@ import AuthorTitle from "./AuthorTitle";
 import Description from "./Description";
 import PublishCategory from "./PublishCategory";
 import EmailBtn from "./EmailBtn";
-import Success from "./Success";
+import Notification from "./Notification";
+import axios from "axios";
 
 function NewBlogInfo() {
   // Image
+  const [image, setImage] = useState("");
+  const [imageError, setImageError] = useState(false);
   // Author
   const [author, setAuthor] = useState(sessionStorage.getItem("author") || "");
   const [smallAuthor, setSmallAuthor] = useState(false);
@@ -48,6 +52,12 @@ function NewBlogInfo() {
   const [isEverithingOk, setIsEverithingOk] = useState(false);
   // Success
   const [success, setSuccess] = useState(false);
+  // Loading Upload
+  const [loadingRes, setLoadingRes] = useState(false);
+  // Error While uploading
+  const [resultError, setResultError] = useState(false);
+  // Show Popup
+  const [activePopup, setActivePopup] = useState(false);
 
   useEffect(() => {
     // Avoid Scrolling While Popup is active
@@ -98,9 +108,37 @@ function NewBlogInfo() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSuccess(true);
-    // Clearing SessionStorage
-    sessionStorage.clear();
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("author", author);
+    formData.append("categories", JSON.stringify(selectedCategories));
+    formData.append("description", description);
+    formData.append("image", image);
+    formData.append("publish_date", publishDate);
+    formData.append("title", title);
+    formData.append("email", email);
+
+    setLoadingRes(true);
+    axios
+      .post("https://api.blog.redberryinternship.ge/api/blogs", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        setSuccess(true);
+        setResultError(false);
+        sessionStorage.clear();
+      })
+      .catch((err) => {
+        console.log("Error uploading blog:", err);
+        setResultError(true);
+        setSuccess(false);
+      })
+      .finally(() => {
+        setLoadingRes(false);
+        setActivePopup(true);
+      });
   }
 
   return (
@@ -109,12 +147,29 @@ function NewBlogInfo() {
         ბლოგის დამატება
       </h1>
 
-      {/* Success MSG */}
-      {success ? <Success /> : ""}
+      {/* Show the message */}
+      {activePopup && (
+        <Notification
+          resultError={resultError}
+          success={success}
+          message={
+            resultError ? "ბლოგი ვერ აიტვირთა" : "ჩანაწი წარმატებით დაემატა"
+          }
+          buttonInput={
+            resultError ? "სცადეთ ხელახლა" : "მთავარ გვერდზე დაბრუნება"
+          }
+          setActivePopup={setActivePopup}
+        />
+      )}
 
       <form className="flex flex-col gap-addBlog" onSubmit={handleSubmit}>
         {/* Image */}
-        <Image />
+        <Image
+          setImage={setImage}
+          setImageError={setImageError}
+          imageError={imageError}
+          image={image}
+        />
         {/* Author, Title */}
         <AuthorTitle
           setAuthor={setAuthor}
@@ -160,6 +215,7 @@ function NewBlogInfo() {
           validEmail={validEmail}
           setValidEmail={setValidEmail}
           isEverithingOk={isEverithingOk}
+          loadingRes={loadingRes}
         />
       </form>
     </div>

@@ -34,10 +34,10 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
         </div>
 
         {/* Posts */}
-        {!postsLoading ? (
-          <div className="flex flex-wrap items-center justify-center gap-x-post_container_x gap-y-post_container_y">
+        {!postsLoading && !postsError ? (
+          <div className="flex flex-wrap items-start justify-center gap-x-post_container_x gap-y-post_container_y">
             {posts
-              .filter((post) => selectedFilters.includes(post.categories.id))
+              // .filter((post) => !selectedFilters.includes(post.categories.id))
               .map((post) => (
                 <Post
                   key={post.id}

@@ -46,7 +46,7 @@ function App() {
       })
       .then((res) => {
         setPosts(res.data.data);
-        setPostsError(true);
+        setPostsError(false);
       })
       .catch((err) => {
         console.log(err);
