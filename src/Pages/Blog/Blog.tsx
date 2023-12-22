@@ -85,9 +85,10 @@ function Blog({ posts, postsLoading, postsError, post }: blogProps) {
                       });
                     });
                   })
+                  .filter((blog) => blog.id !== post.id)
                   .map((z) => {
                     return (
-                      <div>
+                      <div key={z.id}>
                         <Post
                           img={z.image}
                           author={z.author}
