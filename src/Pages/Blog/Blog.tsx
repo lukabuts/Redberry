@@ -1,9 +1,25 @@
+import { useEffect, useState } from "react";
 import BackBtn from "../../Components/BackBtn/BackBtn";
 import Header from "../../Components/Header/Header";
 import Post from "../../Components/Post/Post";
 import blogProps from "../../Types/blogProps";
 
 function Blog({ posts, postsLoading, postsError, post }: blogProps) {
+  const [noSimilarCategories, setNoSimilarCategories] = useState(false);
+  useEffect(() => {
+    const filteresPosts = posts
+      .filter((item) => {
+        return item.categories.some((x) => {
+          return post.categories.some((y) => {
+            return x.id === y.id;
+          });
+        });
+      })
+      .filter((blog) => blog.id !== post.id);
+    filteresPosts.length === 0
+      ? setNoSimilarCategories(true)
+      : setNoSimilarCategories(false);
+  }, [posts, post]);
   return (
     <>
       <Header creatingPost={false} />
@@ -77,30 +93,36 @@ function Blog({ posts, postsLoading, postsError, post }: blogProps) {
                 მსგავსი სტატიები
               </h3>
               <div className="flex specialScrollbar gap-post_container_x">
-                {posts
-                  .filter((item) => {
-                    return item.categories.some((x) => {
-                      return post.categories.some((y) => {
-                        return x.id === y.id;
+                {noSimilarCategories ? (
+                  <h1 className="text-2xl italic text-gray_">
+                    მსგავსი სტატიები არ მოიძებნა
+                  </h1>
+                ) : (
+                  posts
+                    .filter((item) => {
+                      return item.categories.some((x) => {
+                        return post.categories.some((y) => {
+                          return x.id === y.id;
+                        });
                       });
-                    });
-                  })
-                  .filter((blog) => blog.id !== post.id)
-                  .map((z) => {
-                    return (
-                      <div key={z.id}>
-                        <Post
-                          img={z.image}
-                          author={z.author}
-                          date={z.publish_date}
-                          id={z.id}
-                          title={z.title}
-                          desc={z.description}
-                          postCategories={z.categories}
-                        />
-                      </div>
-                    );
-                  })}
+                    })
+                    .filter((blog) => blog.id !== post.id)
+                    .map((z) => {
+                      return (
+                        <div key={z.id}>
+                          <Post
+                            img={z.image}
+                            author={z.author}
+                            date={z.publish_date}
+                            id={z.id}
+                            title={z.title}
+                            desc={z.description}
+                            postCategories={z.categories}
+                          />
+                        </div>
+                      );
+                    })
+                )}
               </div>
             </div>
           </>

@@ -47,8 +47,6 @@ function App() {
       })
       .then((res) => {
         setPosts(res.data.data);
-        console.log(res.data.data);
-
         setPostsError(false);
       })
       .catch((err) => {
@@ -57,8 +55,6 @@ function App() {
       })
       .finally(() => setPostsLoading(false));
   }, [token]);
-
-  console.log(posts);
 
   // Setting Token To LocalStorage
   useEffect(() => {
