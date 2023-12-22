@@ -1,4 +1,5 @@
 import x from "../../assets/images/x.svg";
+import white_x from "../../assets/images/white_x.svg";
 import vector from "../../assets/images/vector.svg";
 import NotificationProps from "../../Types/notificationProps";
 
@@ -31,7 +32,11 @@ function Notification({
           {success ? (
             <img src={vector} alt="Success" />
           ) : (
-            <img src={x} alt="Error" />
+            <img
+              src={white_x}
+              alt="Error"
+              className="w-successImg h-successImg"
+            />
           )}
         </div>
         {/* Message */}
