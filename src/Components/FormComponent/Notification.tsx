@@ -42,7 +42,7 @@ function Notification({
         <button
           onClick={() => {
             closePopup();
-            success && !resultError && window.open("/");
+            success && !resultError && window.open("/", "_self");
           }}
           className="flex-1 mt-[48px] text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
         >
