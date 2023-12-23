@@ -3,12 +3,16 @@ import { useContext } from "react";
 import Header from "../../Components/Header/Header";
 import FormComponent from "../../Components/FormComponent/FormComponent";
 import BackBtn from "../../Components/BackBtn/BackBtn";
+import { Helmet } from "react-helmet";
 
 function CreatePost() {
   const [signedIn, _] = useContext(Context);
   return (
     <div>
       <Header creatingPost={true} />
+      <Helmet>
+        <title>დაამატე ბლოგი</title>
+      </Helmet>
       <BackBtn />
       {signedIn ? (
         <FormComponent />

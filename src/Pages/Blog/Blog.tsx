@@ -5,6 +5,7 @@ import Post from "../../Components/Post/Post";
 import blogProps from "../../Types/blogProps";
 import axios from "axios";
 import Posts from "../../Types/posts";
+import { Helmet } from "react-helmet";
 
 function Blog({ id, posts }: blogProps) {
   const [noSimilarCategories, setNoSimilarCategories] = useState(false);
@@ -61,6 +62,20 @@ function Blog({ id, posts }: blogProps) {
   return (
     <>
       <Header creatingPost={false} />
+      <Helmet>
+        <title>{post?.title}</title>
+        <meta property="og:title" content={post?.title} />
+        <meta property="og:image" content={post?.image} />
+        <meta
+          property="og:url"
+          content={`https://redberry-kgnw.vercel.app/blog-${post?.id}`}
+        />
+        <meta property="og:description" content={post?.description} />
+        {/* Twitter */}
+        <meta name="twitter:title" content={post?.title} />
+        <meta name="twitter:description" content={post?.description} />
+        <meta name="twitter:image" content={post?.image} />
+      </Helmet>
       <BackBtn />
       <div className="flex flex-col items-center justify-center w-full p-main">
         {/* Error */}
