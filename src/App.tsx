@@ -80,14 +80,7 @@ function App() {
                 <Route
                   key={post.id}
                   path={`/blog-${post.id}`}
-                  element={
-                    <Blog
-                      posts={posts}
-                      postsLoading={postsLoading}
-                      postsError={postsError}
-                      post={post}
-                    />
-                  }
+                  element={<Blog id={post.id} posts={posts} />}
                 />
               );
             })}

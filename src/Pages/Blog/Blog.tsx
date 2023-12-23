@@ -3,36 +3,74 @@ import BackBtn from "../../Components/BackBtn/BackBtn";
 import Header from "../../Components/Header/Header";
 import Post from "../../Components/Post/Post";
 import blogProps from "../../Types/blogProps";
+import axios from "axios";
+import Posts from "../../Types/posts";
 
-function Blog({ posts, postsLoading, postsError, post }: blogProps) {
+function Blog({ id, posts }: blogProps) {
   const [noSimilarCategories, setNoSimilarCategories] = useState(false);
+  const [postLoading, setPostLoading] = useState(false);
+  const [postError, setPostError] = useState(false);
+  const [post, setPost] = useState<Posts>();
+  const [similarPosts, setSimilarPosts] = useState<Posts[]>([]);
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
-    const filteresPosts = posts
+    // Getting Post Data
+    if (!token) return;
+    setPostLoading(true);
+    axios
+      .get(`https://api.blog.redberryinternship.ge/api/blogs/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setPost(res.data);
+        setPostError(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setPostError(true);
+      })
+      .finally(() => setPostLoading(false));
+  }, [token, id]);
+
+  // Getting similar categries
+  useEffect(() => {
+    const x = posts
       .filter((item) => {
-        return item.categories.some((x) => {
-          return post.categories.some((y) => {
+        return item.categories?.some((x) => {
+          return post?.categories?.some((y) => {
             return x.id === y.id;
           });
         });
       })
-      .filter((blog) => blog.id !== post.id);
-    filteresPosts.length === 0
-      ? setNoSimilarCategories(true)
-      : setNoSimilarCategories(false);
-  }, [posts, post]);
+      .filter((blog) => {
+        return blog.id !== post?.id;
+      });
+
+    if (x.length === 0) {
+      setNoSimilarCategories(true);
+      return;
+    } else {
+      setNoSimilarCategories(false);
+    }
+    setSimilarPosts(x);
+  }, [posts, post?.id, post?.categories]);
+
   return (
     <>
       <Header creatingPost={false} />
       <BackBtn />
       <div className="flex flex-col items-center justify-center w-full p-main">
         {/* Error */}
-        {postsError ? (
+        {postError ? (
           <h1 className="text-4xl">
             შეიქმნა რაღაც პრობლემა. ბოდიშს გიხდით შეფერხებისთვის
           </h1>
         ) : // Loading
-        postsLoading ? (
-          <h1 className="text-4xl">იტვირთება პოსტები...</h1>
+        postLoading ? (
+          <h1 className="text-4xl">იტვირთება პოსტი...</h1>
         ) : (
           // Show Content
           <>
@@ -40,8 +78,8 @@ function Blog({ posts, postsLoading, postsError, post }: blogProps) {
               {/* Img */}
               <div className="flex justify-center overflow-hidden bg-gray-500 h-post_img rounded-12">
                 <img
-                  src={post.image}
-                  alt={post.title}
+                  src={post?.image}
+                  alt={post?.title}
                   className="object-contain"
                 />
               </div>
@@ -50,19 +88,21 @@ function Blog({ posts, postsLoading, postsError, post }: blogProps) {
                 {/* Author data */}
                 <div className="flex flex-col gap-[8px]">
                   <h4 className="text-black_ text-16 font-500">
-                    {post.author}
+                    {post?.author}
                   </h4>
                   <p className="text-gray_ text-12 font-400">
-                    {post.publish_date}
-                    {post.email && <span> • {post.email}</span>}
+                    {post?.publish_date}
+                    {post?.email && <span> • {post?.email}</span>}
                   </p>
                 </div>
                 <div>
-                  <h2 className="text-black_ text-32 font-700">{post.title}</h2>
+                  <h2 className="text-black_ text-32 font-700">
+                    {post?.title}
+                  </h2>
                 </div>
                 {/* Categoories */}
                 <div className="flex flex-wrap gap-post_info">
-                  {post.categories.map((category) => {
+                  {post?.categories?.map((category) => {
                     return (
                       <div
                         className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
@@ -82,7 +122,7 @@ function Blog({ posts, postsLoading, postsError, post }: blogProps) {
                 {/* Description */}
                 <div>
                   <p className=" text-dark_gray text-16 font-400 leading-post_desc">
-                    {post.description}
+                    {post?.description}
                   </p>
                 </div>
               </div>
@@ -98,30 +138,21 @@ function Blog({ posts, postsLoading, postsError, post }: blogProps) {
                     მსგავსი სტატიები არ მოიძებნა
                   </h1>
                 ) : (
-                  posts
-                    .filter((item) => {
-                      return item.categories.some((x) => {
-                        return post.categories.some((y) => {
-                          return x.id === y.id;
-                        });
-                      });
-                    })
-                    .filter((blog) => blog.id !== post.id)
-                    .map((z) => {
-                      return (
-                        <div key={z.id}>
-                          <Post
-                            img={z.image}
-                            author={z.author}
-                            date={z.publish_date}
-                            id={z.id}
-                            title={z.title}
-                            desc={z.description}
-                            postCategories={z.categories}
-                          />
-                        </div>
-                      );
-                    })
+                  similarPosts.map((z) => {
+                    return (
+                      <div key={z.id}>
+                        <Post
+                          img={z.image}
+                          author={z.author}
+                          date={z.publish_date}
+                          id={z.id}
+                          title={z.title}
+                          desc={z.description}
+                          postCategories={z.categories}
+                        />
+                      </div>
+                    );
+                  })
                 )}
               </div>
             </div>

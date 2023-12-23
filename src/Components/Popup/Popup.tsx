@@ -22,8 +22,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
       .post("https://api.blog.redberryinternship.ge/api/login", {
         email: userEmail,
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         setSignedIn(true);
         setLoginError(false);
       })

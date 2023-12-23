@@ -140,7 +140,7 @@ function PublishCategory({
       {/* Category */}
       <div className="flex-1">
         <label
-          htmlFor="author"
+          htmlFor="category"
           className="text-black_ text-normal font-500 leading-20"
         >
           კატეგორია*
