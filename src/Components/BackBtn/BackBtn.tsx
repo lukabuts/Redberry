@@ -4,6 +4,7 @@ function BackBtn() {
   return (
     <div className="fixed hidden cursor-pointer top-back_icon_t left-back_icon_l lg:block">
       <button
+        className="flex items-center justify-center rounded-full bg-disabled_btn h-btn w-btn"
         onClick={() => {
           window.open("/", "_self");
         }}

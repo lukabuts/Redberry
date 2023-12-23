@@ -5,7 +5,12 @@ import Post from "../../Components/Post/Post";
 import blogProps from "../../Types/blogProps";
 import axios from "axios";
 import Posts from "../../Types/posts";
+import SwiperBtns from "../../Components/SwiperBtns/SwiperBtns";
 import { Helmet } from "react-helmet";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 function Blog({ id, posts }: blogProps) {
   const [noSimilarCategories, setNoSimilarCategories] = useState(false);
@@ -91,7 +96,7 @@ function Blog({ id, posts }: blogProps) {
           <>
             <div className="flex flex-col gap-blog max-w-whole_post mb-whole_post_b mt-whole_post_t">
               {/* Img */}
-              <div className="flex justify-center overflow-hidden bg-gray-500 h-post_img rounded-12">
+              <div className="flex justify-center overflow-hidden bg-imgUpload h-post_img rounded-12">
                 <img
                   src={post?.image}
                   alt={post?.title}
@@ -143,19 +148,28 @@ function Blog({ id, posts }: blogProps) {
               </div>
             </div>
             {/* Similar Blogs */}
-            <div className="flex flex-col w-full max-w gap-blog">
-              <h3 className=" text-black_ text-32 font-700">
-                მსგავსი სტატიები
-              </h3>
-              <div className="flex specialScrollbar gap-post_container_x">
-                {noSimilarCategories ? (
-                  <h1 className="text-2xl italic text-gray_">
-                    მსგავსი სტატიები არ მოიძებნა
-                  </h1>
-                ) : (
-                  similarPosts.map((z) => {
+            {noSimilarCategories ? (
+              <h1 className="text-2xl italic text-gray_">
+                მსგავსი სტატიები არ მოიძებნა
+              </h1>
+            ) : (
+              // Swiper
+              <div className="w-full">
+                <Swiper
+                  modules={[Navigation, Pagination, A11y]}
+                  spaceBetween={32}
+                  slidesPerView={"auto"}
+                  className="flex flex-col-reverse gap-blog"
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className=" text-black_ text-32 font-700">
+                      მსგავსი სტატიები
+                    </h3>
+                    <SwiperBtns />
+                  </div>
+                  {similarPosts.map((z) => {
                     return (
-                      <div key={z.id}>
+                      <SwiperSlide className="max-w-post" key={z.id}>
                         <Post
                           img={z.image}
                           author={z.author}
@@ -165,12 +179,12 @@ function Blog({ id, posts }: blogProps) {
                           desc={z.description}
                           postCategories={z.categories}
                         />
-                      </div>
+                      </SwiperSlide>
                     );
-                  })
-                )}
+                  })}
+                </Swiper>
               </div>
-            </div>
+            )}
           </>
         )}
       </div>

@@ -113,6 +113,7 @@ export default {
         x_icon: "20px",
         back_icon_t: "120px",
         back_icon_l: "4rem",
+        btn: "44px",
       },
     },
   },
