@@ -5,6 +5,8 @@ import blogbg from "../../assets/images/blogbg.svg";
 import Post from "../../Components/Post/Post";
 import Header from "../../Components/Header/Header";
 import HomeProps from "../../Types/homeProps";
+import { Helmet } from "react-helmet";
+import logo from "../../assets/images/logo.svg";
 
 function Home({ posts, postsLoading, postsError }: HomeProps) {
   const filters: any = localStorage.getItem("filters");
@@ -15,6 +17,42 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
   return (
     <>
       <Header creatingPost={false} />
+      <Helmet>
+        {/* General */}
+        <meta
+          name="description"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+        />
+        <meta
+          name="keywords"
+          content="პოსტი, ბლოგი, გაზიარება, ახალი ამბები, საინტერესო, სიახლეები"
+        />
+        <meta name="author" content="ლუკა ბუცხრიკიძე" />
+        <meta name="application-name" content="BlogPoster" />
+
+        {/* Facebook */}
+        <meta property="og:title" content="BlogPoster" />
+        <meta property="og:type" content="Social Media" />
+        <meta property="og:image" content={logo} />
+        <meta property="og:url" content="https://redberry-kgnw.vercel.app/" />
+        <meta
+          property="og:description"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+        />
+
+        {/* Twitter */}
+        <meta
+          name="twitter:card"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+        />
+        <meta name="twitter:title" content="BlogPoster" />
+        <meta
+          name="twitter:description"
+          content="აღმოაჩინე და გაუზიარე სიახლეები ფართო საზოგადოებას. შემოგვიერთდი და აღმოაჩინე აქამდე უცნობი"
+        />
+        <meta name="twitter:image" content={logo} />
+        <title>Redberry</title>
+      </Helmet>
       {/* Content Container */}
       <div className=" px-main mt-home_container_t py-content_y">
         {/* ბლოგი სათაური */}

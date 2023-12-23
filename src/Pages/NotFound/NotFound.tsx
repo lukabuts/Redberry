@@ -1,10 +1,48 @@
 import { Link } from "react-router-dom";
 import Header from "../../Components/Header/Header";
+import { Helmet } from "react-helmet";
+import logo from "../../assets/images/logo.svg";
 
 function NotFound() {
   return (
     <>
       <Header creatingPost={false} />
+      <Helmet>
+        {/* General */}
+        <meta
+          name="description"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+        />
+        <meta
+          name="keywords"
+          content="პოსტი, ბლოგი, გაზიარება, ახალი ამბები, საინტერესო, სიახლეები"
+        />
+        <meta name="author" content="ლუკა ბუცხრიკიძე" />
+        <meta name="application-name" content="BlogPoster" />
+
+        {/* Facebook */}
+        <meta property="og:title" content="BlogPoster" />
+        <meta property="og:type" content="Social Media" />
+        <meta property="og:image" content={logo} />
+        <meta property="og:url" content="https://redberry-kgnw.vercel.app/" />
+        <meta
+          property="og:description"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+        />
+
+        {/* Twitter */}
+        <meta
+          name="twitter:card"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+        />
+        <meta name="twitter:title" content="BlogPoster" />
+        <meta
+          name="twitter:description"
+          content="აღმოაჩინე და გაუზიარე სიახლეები ფართო საზოგადოებას. შემოგვიერთდი და აღმოაჩინე აქამდე უცნობი"
+        />
+        <meta name="twitter:image" content={logo} />
+        <title>Redberry</title>
+      </Helmet>
       <div className="absolute top-0 flex flex-col items-center justify-center w-full h-full gap-post">
         <h1 className="text-4xl">გვერდი ვერ მოიძებნა</h1>
         <Link to="/">
