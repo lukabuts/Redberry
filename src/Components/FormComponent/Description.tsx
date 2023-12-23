@@ -17,8 +17,8 @@ function Description({
     sessionStorage.setItem("description", description);
 
     return () => {
-      sessionStorage.removeItem('description')
-    }
+      sessionStorage.removeItem("description");
+    };
   }, [description, setSmallDesc]);
 
   // ! Handle Description Textarea
@@ -43,7 +43,7 @@ function Description({
         name="description"
         className={`mt-[8px] w-full px-inp_x py-inp_y rounded-12 border-input h-textarea focus:outline-none resize-none text-normal text-gray_ font-400 leading-20 ${
           description.trim().length === 0
-            ? "border-input_normal bg-inp_bg "
+            ? "border-input_normal bg-inp_bg focus:border-active_inp focus:bg-active_inp_bg"
             : !smallDesc
             ? "border-success bg-success_bg"
             : "border-err bg-err_bg"

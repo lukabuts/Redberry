@@ -8,10 +8,10 @@ import PopupProps from "../../Types/popupProps";
 
 function Popup({ setActivePopup, mainText, successText }: PopupProps) {
   const [userEmail, setUserEmail] = useState("");
-
   const [signedIn, setSignedIn] = useContext(Context);
   const [loginError, setLoginError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [activeBtn, setActiveBtn] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -48,6 +48,9 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
   // Handle input Change
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setUserEmail(e.target.value);
+    !e.target.value.endsWith("@redberry.ge")
+      ? setActiveBtn(false)
+      : setActiveBtn(true);
     setLoginError(false);
   }
 
@@ -89,12 +92,8 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
               <input
                 onChange={handleInputChange}
                 value={userEmail}
-                className={`px-inp_x py-inp_y rounded-12 border-input  focus:outline-none ${
-                  loginError
-                    ? " border-err bg-err_bg"
-                    : userEmail
-                    ? "border-active_inp bg-active_inp_bg"
-                    : "border-input_normal"
+                className={`px-inp_x py-inp_y rounded-12 border-input  focus:outline-none focus:border-active_inp focus:bg-active_inp_bg ${
+                  loginError ? " border-err bg-err_bg" : "border-input_normal"
                 }`}
                 type="email"
                 name="email"
@@ -114,7 +113,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
             </>
           )}
           <button
-            disabled={loading}
+            disabled={loading || !activeBtn}
             onClick={() => {
               signedIn && closePopup();
             }}

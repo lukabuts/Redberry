@@ -45,7 +45,8 @@ function EmailBtn({
               ? "border-success bg-success_bg"
               : email.trim().length > 0
               ? "border-err bg-err_bg"
-              : email.trim().length === 0 && "border-input_normal bg-inp_bg"
+              : email.trim().length === 0 &&
+                "border-input_normal bg-inp_bg  focus:border-active_inp focus:bg-active_inp_bg"
           }`}
           type="text"
           name="e-mail"

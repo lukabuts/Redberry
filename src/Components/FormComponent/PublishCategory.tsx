@@ -2,7 +2,7 @@ import axios from "axios";
 import white_x from "../../assets/images/white_x.svg";
 import arrow_down from "../../assets/images/arrow_down.svg";
 import PublishCategoryProps from "../../Types/publishcategoryprops";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function PublishCategory({
   setPublishDate,
@@ -18,6 +18,7 @@ function PublishCategory({
   loading,
   categoriesFilter,
 }: PublishCategoryProps) {
+  const [activeInput, setActiveInput] = useState(false);
   // ?? Setting Items to sessionstorage
   // ! publish Date
   useEffect(() => {
@@ -130,7 +131,7 @@ function PublishCategory({
           className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg focus:outline-none text-normal text-gray_ font-400 leading-20 ${
             publishDate
               ? "border-success bg-success_bg"
-              : "border-input_normal bg-inp_bg"
+              : "border-input_normal bg-inp_bg focus:border-active_inp focus:bg-active_inp_bg"
           }`}
           type="date"
           name="Date"
@@ -145,14 +146,29 @@ function PublishCategory({
         >
           კატეგორია*
         </label>
-        <div className=" flex relative my-[8px] w-full px-inp_x  rounded-12 border-input border-input_normal bg-inp_bg">
+        <div
+          className={`flex relative my-[8px] w-full px-inp_x  rounded-12 border-input  ${
+            selectedCategories.length > 0
+              ? "bg-success_bg border-success"
+              : (activeInput && selectedCategories.length === 0) ||
+                categoriesFilter.length > 0
+              ? "bg-active_inp_bg border-active_inp"
+              : "border-input_normal bg-inp_bg "
+          }`}
+        >
           <div className="relative flex flex-1 pt-[12px] pb-[8px] specialScrollbar">
             <input
               onChange={(e) => {
                 setCategoriesFilter(e.target.value.trim());
               }}
+              onFocus={() => {
+                setActiveInput(true);
+              }}
+              onBlur={() => {
+                setActiveInput(false);
+              }}
               value={categoriesFilter}
-              className="flex-1 focus:outline-none text-normal text-gray_ font-400 leading-20"
+              className="flex-1 bg-transparent focus:outline-none text-normal text-gray_ font-400 leading-20"
               type="choose"
               name="Category"
               placeholder="აირჩიეთ კატეგორია"
