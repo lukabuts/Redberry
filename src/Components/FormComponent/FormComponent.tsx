@@ -85,7 +85,9 @@ function NewBlogInfo() {
       !smallDesc &&
       publishDate.length > 0 &&
       selectedCategories.length > 0 &&
-      (email.length === 0 || (email.length > 0 && validEmail))
+      (email.length === 0 || (email.length > 0 && validEmail)) &&
+      image &&
+      !imageError
     ) {
       setIsEverithingOk(true);
     } else {
@@ -104,6 +106,8 @@ function NewBlogInfo() {
     selectedCategories,
     email,
     validEmail,
+    image,
+    imageError,
   ]);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {

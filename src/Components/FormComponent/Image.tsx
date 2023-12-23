@@ -33,6 +33,9 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
       };
       reader.readAsDataURL(image);
     }
+    return () => {
+      sessionStorage.removeItem("image");
+    };
   }, [image]);
 
   // Getting stored image
