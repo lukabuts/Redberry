@@ -94,13 +94,13 @@ function Blog({ id, posts }: blogProps) {
         ) : (
           // Show Content
           <>
-            <div className="flex flex-col gap-blog max-w-whole_post mb-whole_post_b mt-whole_post_t">
+            <div className="flex flex-col w-full gap-blog max-w-whole_post mb-whole_post_b mt-whole_post_t">
               {/* Img */}
               <div className="flex justify-center overflow-hidden bg-imgUpload h-post_img rounded-12">
                 <img
                   src={post?.image}
                   alt={post?.title}
-                  className="object-contain"
+                  className="object-cover w-full h-full"
                 />
               </div>
               {/* Info */}
