@@ -82,7 +82,7 @@ function Blog({ id, posts }: blogProps) {
         <meta name="twitter:image" content={post?.image} />
       </Helmet>
       <BackBtn />
-      <div className="flex flex-col items-center justify-center w-full px-main">
+      <div className="flex flex-col items-center justify-center w-full pt-0 p-main">
         {/* Error */}
         {postError ? (
           <h1 className="text-4xl">
@@ -111,7 +111,7 @@ function Blog({ id, posts }: blogProps) {
                     {post?.author}
                   </h4>
                   <p className="text-gray_ text-12 font-400">
-                    {post?.publish_date}
+                    {post?.publish_date.split("-").reverse().join(".")}
                     {post?.email && <span> • {post?.email}</span>}
                   </p>
                 </div>

@@ -15,29 +15,18 @@ function App() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const localValue: any = localStorage.getItem("signedIn");
   const [signedIn, setSignedIn] = useState(JSON.parse(localValue) || false);
-
-  const savedtoken = localStorage.getItem("token") || "";
-  const [token, setToken] = useState(savedtoken);
   const [postsLoading, setPostsLoading] = useState(false);
   const [posts, setPosts] = useState<Posts[]>([]);
   const [postsError, setPostsError] = useState(false);
+  const token =
+    "2eba6d6b9a9e6ae0b64af1797627303c2ee3c53644525c3f96b6e53b713f9a19";
+
+  // Setting Token To LocalStorage
+  useEffect(() => {
+    localStorage.setItem("token", token);
+  }, [token]);
 
   useEffect(() => {
-    // Getting Token
-    if (token) return;
-    axios
-      .get("https://api.blog.redberryinternship.ge/api/token")
-      .then((res) => {
-        setToken(res.data.token);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  useEffect(() => {
-    // Getting Posts Data
-    if (!token) return;
     setPostsLoading(true);
     axios
       .get("https://api.blog.redberryinternship.ge/api/blogs", {
@@ -62,11 +51,6 @@ function App() {
         setPostsError(true);
       })
       .finally(() => setPostsLoading(false));
-  }, [token]);
-
-  // Setting Token To LocalStorage
-  useEffect(() => {
-    localStorage.setItem("token", token);
   }, [token]);
 
   return (

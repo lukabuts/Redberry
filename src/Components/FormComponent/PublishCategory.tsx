@@ -158,7 +158,7 @@ function PublishCategory({
                 setActiveInput(false);
               }}
               value={categoriesFilter}
-              className="flex-1 bg-transparent focus:outline-none text-normal text-gray_ font-400 leading-20"
+              className="flex-1 ml-[10px] bg-transparent focus:outline-none text-normal text-gray_ font-400 leading-20"
               type="choose"
               name="Category"
               placeholder="აირჩიეთ კატეგორია"
