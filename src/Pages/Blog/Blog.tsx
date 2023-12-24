@@ -82,7 +82,7 @@ function Blog({ id, posts }: blogProps) {
         <meta name="twitter:image" content={post?.image} />
       </Helmet>
       <BackBtn />
-      <div className="flex flex-col items-center justify-center w-full p-main">
+      <div className="flex flex-col items-center justify-center w-full px-main">
         {/* Error */}
         {postError ? (
           <h1 className="text-4xl">
@@ -140,7 +140,7 @@ function Blog({ id, posts }: blogProps) {
                   })}
                 </div>
                 {/* Description */}
-                <div>
+                <div className="mt-[16px]">
                   <p className=" text-dark_gray text-16 font-400 leading-post_desc">
                     {post?.description}
                   </p>
