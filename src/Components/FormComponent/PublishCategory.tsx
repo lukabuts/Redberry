@@ -73,14 +73,6 @@ function PublishCategory({
     const inpValue = e.target.value;
     setPublishDate(inpValue);
   }
-  // ? Get Current Date
-  function getFreshDate(e: React.MouseEvent<HTMLInputElement>) {
-    const target = e.target as HTMLInputElement;
-
-    if (!target.min) {
-      target.min = new Date().toISOString().split("T")[0];
-    }
-  }
 
   // ! handle Selectedcategory change
   function handleSelectedCategory(id: number) {
@@ -126,12 +118,11 @@ function PublishCategory({
         <input
           required
           onChange={handleDate}
-          onClick={getFreshDate}
           value={publishDate}
-          className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg focus:outline-none text-normal text-gray_ font-400 leading-20 ${
+          className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg focus:outline-none text-normal text-gray_ font-400 leading-20  focus:border-active_inp focus:bg-active_inp_bg ${
             publishDate
               ? "border-success bg-success_bg"
-              : "border-input_normal bg-inp_bg focus:border-active_inp focus:bg-active_inp_bg"
+              : "border-input_normal bg-inp_bg"
           }`}
           type="date"
           name="Date"
@@ -147,16 +138,15 @@ function PublishCategory({
           კატეგორია*
         </label>
         <div
-          className={`flex relative my-[8px] w-full px-inp_x  rounded-12 border-input  ${
-            selectedCategories.length > 0
-              ? "bg-success_bg border-success"
-              : (activeInput && selectedCategories.length === 0) ||
-                categoriesFilter.length > 0
+          className={`flex relative my-[8px] w-full pr-[10px]  rounded-12 border-input  ${
+            activeInput
               ? "bg-active_inp_bg border-active_inp"
+              : selectedCategories.length > 0
+              ? "bg-success_bg border-success"
               : "border-input_normal bg-inp_bg "
           }`}
         >
-          <div className="relative flex flex-1 pt-[12px] pb-[8px] specialScrollbar">
+          <div className="relative flex flex-1 overflow-hidden py-inp_y pl-[6px]">
             <input
               onChange={(e) => {
                 setCategoriesFilter(e.target.value.trim());
@@ -214,33 +204,26 @@ function PublishCategory({
             }`}
           >
             {!loading ? (
-              categories
-                .filter((category) => {
-                  return (
-                    !selectedCategories.includes(category.id) &&
-                    category.title.includes(categoriesFilter)
-                  );
-                })
-                .map((category) => {
-                  return (
-                    <div
-                      onClick={() => {
-                        handleSelectedCategory(category.id);
-                        setCategoriesFilter("");
-                      }}
-                      className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
-                      key={category.id}
-                      style={{ background: category.background_color }}
+              categories.map((category) => {
+                return (
+                  <div
+                    onClick={() => {
+                      handleSelectedCategory(category.id);
+                      setCategoriesFilter("");
+                    }}
+                    className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
+                    key={category.id}
+                    style={{ background: category.background_color }}
+                  >
+                    <p
+                      className="text-12 "
+                      style={{ color: category.text_color }}
                     >
-                      <p
-                        className="text-12 "
-                        style={{ color: category.text_color }}
-                      >
-                        {category.title}
-                      </p>
-                    </div>
-                  );
-                })
+                      {category.title}
+                    </p>
+                  </div>
+                );
+              })
             ) : (
               <h1 className="w-full text-center text-normal">
                 იტვირთება კომპონენტები...

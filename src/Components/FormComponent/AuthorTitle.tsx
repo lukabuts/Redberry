@@ -86,13 +86,12 @@ function AuthorTitle({
           <input
             autoComplete="name"
             required
-            className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input  focus:outline-none text-normal text-gray_ font-400 leading-20  ${
+            className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input  focus:outline-none text-normal text-gray_ font-400 leading-20 focus:border-active_inp focus:bg-active_inp_bg  ${
               author.trim().length > 0 && !smallAuthor && min2Words && onlyGeo
                 ? "border-success bg-success_bg"
                 : author.trim().length > 0
                 ? "border-err bg-err_bg"
-                : author.trim().length === 0 &&
-                  "border-input_normal bg-inp_bg focus:border-active_inp focus:bg-active_inp_bg"
+                : author.trim().length === 0 && "border-input_normal bg-inp_bg "
             }`}
             id="author"
             type="text"
@@ -150,12 +149,12 @@ function AuthorTitle({
             onChange={handleTitle}
             value={title}
             autoComplete="off"
-            className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input focus:outline-none text-normal text-gray_ font-400 leading-20 ${
+            className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input focus:outline-none text-normal text-gray_ font-400 leading-20 focus:border-active_inp focus:bg-active_inp_bg ${
               title.length > 0 && !smallTitle
                 ? "border-success bg-success_bg"
                 : title.length > 0
                 ? "border-err bg-err_bg"
-                : "border-input_normal bg-inp_bg focus:border-active_inp focus:bg-active_inp_bg"
+                : "border-input_normal bg-inp_bg "
             }`}
             type="text"
             name="title"

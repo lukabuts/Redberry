@@ -9,11 +9,17 @@ function EmailBtn({
   setValidEmail,
   isEverithingOk,
   loadingRes,
+  longEmail,
+  setLongEmail,
 }: EmailBtnProps) {
   // ?? Setting email to localstorage
 
   useEffect(() => {
     email.endsWith("@redberry.ge") ? setValidEmail(true) : setValidEmail(false);
+
+    email.trim().split(" ").length !== 1
+      ? setLongEmail(true)
+      : setLongEmail(false);
     if (!email) return;
     sessionStorage.setItem("email", email);
 
@@ -40,13 +46,12 @@ function EmailBtn({
           onChange={handleEmail}
           autoComplete="email"
           spellCheck={false}
-          className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input focus:outline-none text-normal text-gray_ font-400 leading-20 ${
+          className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input focus:outline-none text-normal text-gray_ font-400 leading-20 focus:border-active_inp focus:bg-active_inp_bg ${
             email.trim().length > 0 && validEmail
               ? "border-success bg-success_bg"
               : email.trim().length > 0
               ? "border-err bg-err_bg"
-              : email.trim().length === 0 &&
-                "border-input_normal bg-inp_bg  focus:border-active_inp focus:bg-active_inp_bg"
+              : email.trim().length === 0 && "border-input_normal bg-inp_bg  "
           }`}
           type="text"
           name="e-mail"
@@ -55,12 +60,16 @@ function EmailBtn({
         />
         <div
           className={` gap-x-err ${
-            !validEmail && email.trim().length > 0 ? "flex" : "hidden"
+            (!validEmail && email.trim().length > 0) || longEmail
+              ? "flex"
+              : "hidden"
           }`}
         >
           <img height={20} width={20} src={error} alt="error" />
           <span className="font-normal text-err text-12 leading-20">
-            {!validEmail && "მეილი უნდა მთავრდებოდეს @redberry.ge-ით"}
+            {longEmail
+              ? "მეილი უნდა შედგებოდეს ერთი სიტყვისგან"
+              : !validEmail && "მეილი უნდა მთავრდებოდეს @redberry.ge-ით"}
           </span>
         </div>
       </div>

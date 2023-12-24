@@ -48,6 +48,7 @@ function NewBlogInfo() {
   // E-mail
   const [email, setEmail] = useState(sessionStorage.getItem("email") || "");
   const [validEmail, setValidEmail] = useState(false);
+  const [longEmail, setLongEmail] = useState(false);
   // Check if everithing is OK
   const [isEverithingOk, setIsEverithingOk] = useState(false);
   // Success
@@ -85,7 +86,7 @@ function NewBlogInfo() {
       !smallDesc &&
       publishDate.length > 0 &&
       selectedCategories.length > 0 &&
-      (email.length === 0 || (email.length > 0 && validEmail)) &&
+      (email.length === 0 || (email.length > 0 && validEmail && !longEmail)) &&
       image &&
       !imageError
     ) {
@@ -108,6 +109,7 @@ function NewBlogInfo() {
     validEmail,
     image,
     imageError,
+    longEmail,
   ]);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -220,6 +222,8 @@ function NewBlogInfo() {
           setValidEmail={setValidEmail}
           isEverithingOk={isEverithingOk}
           loadingRes={loadingRes}
+          setLongEmail={setLongEmail}
+          longEmail={longEmail}
         />
       </form>
     </div>

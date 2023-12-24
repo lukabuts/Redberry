@@ -21,8 +21,8 @@ function Post({
   return (
     <div className="flex flex-col gap-post w-post">
       {/* Img */}
-      <div className="flex justify-center overflow-hidden bg-imgUploaded h-post_img rounded-12">
-        <img src={img} alt={title} className="object-contain" />
+      <div className="flex items-center justify-center overflow-hidden h-post_img rounded-12">
+        <img src={img} alt={title} className="object-cover w-full h-full" />
       </div>
       {/* Info */}
       <div className="flex flex-col gap-post_info">
