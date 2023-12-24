@@ -28,10 +28,10 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
           content="პოსტი, ბლოგი, გაზიარება, ახალი ამბები, საინტერესო, სიახლეები"
         />
         <meta name="author" content="ლუკა ბუცხრიკიძე" />
-        <meta name="application-name" content="BlogPoster" />
+        <meta name="application-name" content="Redberry" />
 
         {/* Facebook */}
-        <meta property="og:title" content="BlogPoster" />
+        <meta property="og:title" content="Redberry" />
         <meta property="og:type" content="Social Media" />
         <meta property="og:image" content={logo} />
         <meta property="og:url" content="https://redberry-kgnw.vercel.app/" />
@@ -45,7 +45,7 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
           name="twitter:card"
           content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
         />
-        <meta name="twitter:title" content="BlogPoster" />
+        <meta name="twitter:title" content="Redberry" />
         <meta
           name="twitter:description"
           content="აღმოაჩინე და გაუზიარე სიახლეები ფართო საზოგადოებას. შემოგვიერთდი და აღმოაჩინე აქამდე უცნობი"
@@ -72,7 +72,7 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
 
         {/* Posts */}
         {!postsLoading && !postsError ? (
-          <div className="flex flex-wrap items-start justify-center gap-x-post_container_x gap-y-post_container_y">
+          <div className="special-grid">
             {posts
               .filter((post) => {
                 if (selectedFilters.length === 0) {

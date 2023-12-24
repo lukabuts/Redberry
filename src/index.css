@@ -10,4 +10,11 @@
   body {
     background-color: #fbfaff;
   }
+
+  .special-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 408px);
+    justify-content: space-around;
+    gap: 56px 32px;
+  }
 }
