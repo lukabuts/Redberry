@@ -63,78 +63,83 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
   }
 
   return (
-    <div
-      //   onClick={closePopup}
-      className="fixed  top-0 flex items-center justify-center w-full h-full cursor-pointer bg-black_ bg-opacity-[0.24] z-popup "
-    >
-      <div className="relative block w-full bg-white px-popup_x py-popup_y rounded-12 max-w-popup">
-        {/* X icon */}
-        <button
-          onClick={closePopup}
-          className="absolute top-x_icon right-x_icon"
-        >
-          <img src={x} alt="exit" />
-        </button>
-        {/* Main content */}
-        {!signedIn && (
-          <h5 className="text-center text-black_ text-24 font-700 mb-[24px] leading-32">
-            {mainText}
-          </h5>
-        )}
-        <form onSubmit={handleSubmit} className="flex flex-col">
-          {signedIn ? (
-            <>
-              <div className="flex items-center self-center justify-center rounded-full w-successImg h-successImg bg-success mb-[21px]">
-                <img src={vector} alt="Success" />
-              </div>
-              <p className="self-center">{successText}</p>
-            </>
-          ) : (
-            <>
-              <label
-                className="text-normal text-black_ font-500 leading-20 mb-[10px]"
-                htmlFor="email"
-              >
-                ელ-ფოსტა
-              </label>
-              <input
-                onChange={handleInputChange}
-                value={userEmail}
-                className={`px-inp_x py-inp_y rounded-12 border-input  focus:outline-none focus:border-active_inp focus:bg-active_inp_bg ${
-                  loginError || longEmail
-                    ? " border-err bg-err_bg"
-                    : "border-input_normal"
-                }`}
-                type="email"
-                name="email"
-                placeholder="Example@redberry.ge"
-                id="email"
-                autoComplete="email"
-                required
-              />
-              {loginError && (
-                <div className="mt-[8px] flex gap-err">
-                  <img width={20} src={error} />
-                  <span className="text-err text-12 font-400 leading-20">
-                    ელ-ფოსტა არ მოიძებნა
-                  </span>
-                </div>
-              )}
-            </>
-          )}
+    <>
+      {/* Popup Closer */}
+      <div
+        onClick={closePopup}
+        className="fixed left-0 top-0 w-full h-full cursor-pointer bg-black_ bg-opacity-[0.24] z-popupCloser "
+      ></div>
+      {/* Popup */}
+      <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
+        <div className="relative w-full m-auto bg-white px-popup_x py-popup_y rounded-12 max-w-popup z-popup">
+          {/* X icon */}
           <button
-            disabled={loading || !activeBtn || longEmail}
-            onClick={() => {
-              signedIn && closePopup();
-            }}
-            className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login mt-[24px] disabled:bg-disabled_btn disabled:text-white disabled:cursor-wait "
-            type="submit"
+            onClick={closePopup}
+            className="absolute top-x_icon right-x_icon"
           >
-            {signedIn ? "კარგი" : "შესვლა"}
+            <img src={x} alt="exit" />
           </button>
-        </form>
+          {/* Main content */}
+          {!signedIn && (
+            <h5 className="text-center text-black_ text-24 font-700 mb-[24px] leading-32">
+              {mainText}
+            </h5>
+          )}
+          <form onSubmit={handleSubmit} className="flex flex-col">
+            {signedIn ? (
+              <>
+                <div className="flex items-center self-center justify-center rounded-full w-successImg h-successImg bg-success mb-[21px]">
+                  <img src={vector} alt="Success" />
+                </div>
+                <p className="self-center">{successText}</p>
+              </>
+            ) : (
+              <>
+                <label
+                  className="text-normal text-black_ font-500 leading-20 mb-[10px]"
+                  htmlFor="email"
+                >
+                  ელ-ფოსტა
+                </label>
+                <input
+                  onChange={handleInputChange}
+                  value={userEmail}
+                  className={`px-inp_x py-inp_y rounded-12 border-input  focus:outline-none focus:border-active_inp focus:bg-active_inp_bg ${
+                    loginError || longEmail
+                      ? " border-err bg-err_bg"
+                      : "border-input_normal"
+                  }`}
+                  type="email"
+                  name="email"
+                  placeholder="Example@redberry.ge"
+                  id="email"
+                  autoComplete="email"
+                  required
+                />
+                {loginError && (
+                  <div className="mt-[8px] flex gap-err">
+                    <img width={20} src={error} />
+                    <span className="text-err text-12 font-400 leading-20">
+                      ელ-ფოსტა არ მოიძებნა
+                    </span>
+                  </div>
+                )}
+              </>
+            )}
+            <button
+              disabled={loading || !activeBtn || longEmail}
+              onClick={() => {
+                signedIn && closePopup();
+              }}
+              className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login mt-[24px] disabled:bg-disabled_btn disabled:text-white  disabled:cursor-not-allowed "
+              type="submit"
+            >
+              {signedIn ? "კარგი" : "შესვლა"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

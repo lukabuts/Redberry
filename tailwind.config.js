@@ -64,6 +64,7 @@ export default {
       zIndex: {
         header: 99,
         popup: 999,
+        popupCloser: 998,
       },
       fontSize: {
         normal: "14px",
