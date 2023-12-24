@@ -204,26 +204,28 @@ function PublishCategory({
             }`}
           >
             {!loading ? (
-              categories.map((category) => {
-                return (
-                  <div
-                    onClick={() => {
-                      handleSelectedCategory(category.id);
-                      setCategoriesFilter("");
-                    }}
-                    className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
-                    key={category.id}
-                    style={{ background: category.background_color }}
-                  >
-                    <p
-                      className="text-12 "
-                      style={{ color: category.text_color }}
+              categories
+                .filter((x) => x.title.includes(categoriesFilter))
+                .map((category) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        handleSelectedCategory(category.id);
+                        setCategoriesFilter("");
+                      }}
+                      className="cursor-pointer rounded-component_item px-small_component_x py-small_component_y -500"
+                      key={category.id}
+                      style={{ background: category.background_color }}
                     >
-                      {category.title}
-                    </p>
-                  </div>
-                );
-              })
+                      <p
+                        className="text-12 "
+                        style={{ color: category.text_color }}
+                      >
+                        {category.title}
+                      </p>
+                    </div>
+                  );
+                })
             ) : (
               <h1 className="w-full text-center text-normal">
                 იტვირთება კომპონენტები...
