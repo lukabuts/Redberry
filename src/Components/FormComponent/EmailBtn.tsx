@@ -26,7 +26,7 @@ function EmailBtn({
     return () => {
       sessionStorage.removeItem("email");
     };
-  }, [email, setValidEmail]);
+  }, [email, setValidEmail, setLongEmail]);
   // ! Handling User E-mail
   function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {
     const inputVal = e.target.value;

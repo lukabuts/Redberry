@@ -19,7 +19,7 @@ function App() {
   const savedtoken = localStorage.getItem("token") || "";
   const [token, setToken] = useState(savedtoken);
   const [postsLoading, setPostsLoading] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<Posts[]>([]);
   const [postsError, setPostsError] = useState(false);
 
   useEffect(() => {
@@ -46,7 +46,15 @@ function App() {
         },
       })
       .then((res) => {
-        setPosts(res.data.data);
+        const data = res.data.data;
+
+        // Filtering Posts by their publish date
+        const filteredData = data.filter((post: Posts) => {
+          const now = new Date().toISOString().split("T")[0];
+          return now >= post.publish_date;
+        });
+
+        setPosts(filteredData);
         setPostsError(false);
       })
       .catch((err) => {
@@ -60,6 +68,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem("token", token);
   }, [token]);
+
   return (
     <>
       <Context.Provider value={[signedIn, setSignedIn]}>
