@@ -29,7 +29,9 @@ function Post({
         {/* Author data */}
         <div>
           <h4 className="text-black_ text-16 font-500">{author}</h4>
-          <span className="text-gray_ text-12 font-400">{date}</span>
+          <span className="text-gray_ text-12 font-400">
+            {date.split("-").reverse().join(".")}
+          </span>
         </div>
         <div>
           <h2 className="text-black_ text-20 font-500 line-clamp-2">{title}</h2>
