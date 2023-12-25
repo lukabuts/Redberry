@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import gallery from "../../assets/images/gallery.svg";
 import folder_add from "../../assets/images/folder_add.svg";
 import x from "../../assets/images/x.svg";

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import Data from "../../Types/data";
 import Image from "./Image";
@@ -31,15 +30,22 @@ function NewBlogInfo() {
     sessionStorage.getItem("publishDate") || ""
   );
   // Categories
-  const savedSelectedCategories: any =
-    sessionStorage.getItem("selectedCategories");
-  const savedCategories: any = sessionStorage.getItem("categories");
-  const [categories, setCategories] = useState<Data[]>(
-    JSON.parse(savedCategories) || []
-  );
+  const savedSelectedCategories = sessionStorage.getItem("selectedCategories");
+  const parsedSavedSelectedCategories = savedSelectedCategories
+    ? JSON.parse(savedSelectedCategories)
+    : null;
   const [selectedCategories, setSelectedCategories] = useState<number[]>(
-    JSON.parse(savedSelectedCategories) || []
+    parsedSavedSelectedCategories || []
   );
+
+  const savedCategories = sessionStorage.getItem("categories");
+  const parsedSavedCategories = savedCategories
+    ? JSON.parse(savedCategories)
+    : null;
+  const [categories, setCategories] = useState<Data[]>(
+    parsedSavedCategories || []
+  );
+
   const [categoriesFilter, setCategoriesFilter] = useState(
     sessionStorage.getItem("categoriesFilter") || ""
   );

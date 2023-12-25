@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import Categories from "../../Components/Categories/Categories";
 import blogbg from "../../assets/images/blogbg.svg";
@@ -9,10 +8,9 @@ import { Helmet } from "react-helmet";
 import logo from "../../assets/images/logo.svg";
 
 function Home({ posts, postsLoading, postsError }: HomeProps) {
-  const filters: any = localStorage.getItem("filters");
-  const [selectedFilters, setSelectedFilters] = useState(
-    JSON.parse(filters) || []
-  );
+  const filters = localStorage.getItem("filters");
+  const parsedFilters = filters ? JSON.parse(filters) : null;
+  const [selectedFilters, setSelectedFilters] = useState(parsedFilters || []);
 
   return (
     <>
