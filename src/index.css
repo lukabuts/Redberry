@@ -1,12 +1,25 @@
-@import url("https://free.bboxtype.com/embedfonts/?family=FiraGO:500");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "FiraGO";
+  src: url("./assets/fonts/FiraGO-Regular.eot");
+  src: url("./assets/fonts/FiraGO-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("./assets/fonts/FiraGO-Regular.woff2") format("woff2"),
+    url("./assets/fonts/FiraGO-Regular.woff") format("woff"),
+    url("./assets/fonts/FiraGO-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 
 @layer {
   * {
     font-family: "FiraGO", sans-serif;
   }
+
   body {
     background-color: #fbfaff;
   }
