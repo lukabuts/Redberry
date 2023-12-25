@@ -107,18 +107,18 @@ function Blog({ id, posts }: blogProps) {
               <div className="flex flex-col gap-whole_post_info">
                 {/* Author data */}
                 <div className="flex flex-col gap-[8px]">
-                  <h4 className="text-black_ text-16 font-500">
+                  <h2 className="text-black_ text-16 font-500">
                     {post?.author}
-                  </h4>
+                  </h2>
                   <p className="text-gray_ text-12 font-400">
                     {post?.publish_date.split("-").reverse().join(".")}
                     {post?.email && <span> • {post?.email}</span>}
                   </p>
                 </div>
                 <div>
-                  <h2 className="text-black_ text-32 font-700">
+                  <h1 className="text-black_ text-32 font-700">
                     {post?.title}
-                  </h2>
+                  </h1>
                 </div>
                 {/* Categoories */}
                 <div className="flex flex-wrap gap-post_info">

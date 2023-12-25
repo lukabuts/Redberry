@@ -28,7 +28,7 @@ function Post({
       <div className="flex flex-col gap-post_info">
         {/* Author data */}
         <div>
-          <h4 className="text-black_ text-16 font-500">{author}</h4>
+          <h3 className="text-black_ text-16 font-500">{author}</h3>
           <span className="text-gray_ text-12 font-400">
             {date.split("-").reverse().join(".")}
           </span>
@@ -66,7 +66,7 @@ function Post({
               to={`/blog-${id}`}
             >
               სრულად ნახვა
-              <img src={arrow} alt="arrow" />
+              <img width={20} height={20} src={arrow} alt="arrow" />
             </Link>
           </button>
         </div>
