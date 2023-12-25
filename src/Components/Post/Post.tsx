@@ -28,13 +28,13 @@ function Post({
       <div className="flex flex-col gap-post_info">
         {/* Author data */}
         <div>
-          <h3 className="text-black_ text-16 font-500">{author}</h3>
+          <h2 className="text-black_ text-16 font-500">{author}</h2>
           <span className="text-gray_ text-12 font-400">
             {date.split("-").reverse().join(".")}
           </span>
         </div>
         <div>
-          <h4 className="text-black_ text-20 font-500 line-clamp-2">{title}</h4>
+          <h3 className="text-black_ text-20 font-500 line-clamp-2">{title}</h3>
         </div>
         {/* Categoories */}
         <div className="flex flex-wrap gap-post_info">
