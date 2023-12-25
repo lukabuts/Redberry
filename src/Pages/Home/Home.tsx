@@ -60,11 +60,7 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
           <h1 className="text-black_ text-64 font-700 leading-72 ml-[13px]">
             ბლოგი
           </h1>
-          <img
-            src={blogbg}
-            className="max-w-[624px] max-h-[200px]"
-            alt="Blog Background"
-          />
+          <img src={blogbg} width={624} height={200} alt="Blog Background" />
         </div>
         {/* Categories */}
         <div className="flex flex-wrap content-center justify-center gap-components mb-home_container_t">
