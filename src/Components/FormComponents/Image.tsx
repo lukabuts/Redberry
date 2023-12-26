@@ -21,6 +21,7 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
   function removeImage() {
     setImage("");
     localStorage.removeItem("image");
+    localStorage.removeItem("imageName");
     setImageError(false);
   }
 
