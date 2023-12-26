@@ -23,23 +23,23 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
     setImageError(false);
   }
 
-  // Set image to sessionstorage
+  // Set image to localStorage
   useEffect(() => {
     if (image) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        sessionStorage.setItem("image", reader.result as string);
+        localStorage.setItem("image", reader.result as string);
       };
       reader.readAsDataURL(image);
     }
     return () => {
-      sessionStorage.removeItem("image");
+      localStorage.removeItem("image");
     };
   }, [image]);
 
   // Getting stored image
   useEffect(() => {
-    const storedImage = sessionStorage.getItem("image");
+    const storedImage = localStorage.getItem("image");
     if (storedImage) {
       const blob = dataURLtoBlob(storedImage);
       const file = new File([blob], "image.jpg", { type: "image/jpeg" });

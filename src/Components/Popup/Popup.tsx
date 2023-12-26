@@ -44,6 +44,8 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
 
   function closePopup() {
     setActivePopup(false);
+    if (!signedIn) return;
+    window.open("/", "_self");
   }
 
   // Handle input Change

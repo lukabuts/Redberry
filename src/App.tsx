@@ -26,6 +26,7 @@ function App() {
     localStorage.setItem("token", token);
   }, [token]);
 
+  // Getting Blogs
   useEffect(() => {
     setPostsLoading(true);
     axios

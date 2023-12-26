@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Data from "../../Types/data";
-import Image from "./Image";
-import AuthorTitle from "./AuthorTitle";
-import Description from "./Description";
-import PublishCategory from "./PublishCategory";
-import EmailBtn from "./EmailBtn";
-import Notification from "./Notification";
+import Image from "../FormComponents/Image";
+import AuthorTitle from "../FormComponents/AuthorTitle";
+import Description from "../FormComponents/Description";
+import PublishCategory from "../FormComponents/PublishCategory";
+import EmailBtn from "../FormComponents/EmailBtn";
+import Notification from "../FormComponents/Notification";
 import axios from "axios";
 
 function NewBlogInfo() {
@@ -13,24 +13,24 @@ function NewBlogInfo() {
   const [image, setImage] = useState("");
   const [imageError, setImageError] = useState(false);
   // Author
-  const [author, setAuthor] = useState(sessionStorage.getItem("author") || "");
+  const [author, setAuthor] = useState(localStorage.getItem("author") || "");
   const [smallAuthor, setSmallAuthor] = useState(false);
   const [min2Words, setmin2Words] = useState(false);
   const [onlyGeo, setOnlyGeo] = useState(true);
   // Title
-  const [title, setTitle] = useState(sessionStorage.getItem("title") || "");
+  const [title, setTitle] = useState(localStorage.getItem("title") || "");
   const [smallTitle, setSmallTitle] = useState(false);
   // Description
   const [description, setDescription] = useState(
-    sessionStorage.getItem("description") || ""
+    localStorage.getItem("description") || ""
   );
   const [smallDesc, setSmallDesc] = useState(false);
   // Publish Date
   const [publishDate, setPublishDate] = useState(
-    sessionStorage.getItem("publishDate") || ""
+    localStorage.getItem("publishDate") || ""
   );
   // Categories
-  const savedSelectedCategories = sessionStorage.getItem("selectedCategories");
+  const savedSelectedCategories = localStorage.getItem("selectedCategories");
   const parsedSavedSelectedCategories = savedSelectedCategories
     ? JSON.parse(savedSelectedCategories)
     : null;
@@ -38,7 +38,7 @@ function NewBlogInfo() {
     parsedSavedSelectedCategories || []
   );
 
-  const savedCategories = sessionStorage.getItem("categories");
+  const savedCategories = localStorage.getItem("categories");
   const parsedSavedCategories = savedCategories
     ? JSON.parse(savedCategories)
     : null;
@@ -47,12 +47,12 @@ function NewBlogInfo() {
   );
 
   const [categoriesFilter, setCategoriesFilter] = useState(
-    sessionStorage.getItem("categoriesFilter") || ""
+    localStorage.getItem("categoriesFilter") || ""
   );
   const [loading, setLoading] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   // E-mail
-  const [email, setEmail] = useState(sessionStorage.getItem("email") || "");
+  const [email, setEmail] = useState(localStorage.getItem("email") || "");
   const [validEmail, setValidEmail] = useState(false);
   const [longEmail, setLongEmail] = useState(false);
   // Check if everithing is OK
@@ -140,7 +140,16 @@ function NewBlogInfo() {
       .then(() => {
         setSuccess(true);
         setResultError(false);
-        sessionStorage.clear();
+        // !!!!
+        setImage("");
+        setAuthor("");
+        setTitle("");
+        setDescription("");
+        setPublishDate("");
+        setEmail("");
+        setSelectedCategories([]);
+        setCategories([]);
+        // !!!!
       })
       .catch((err) => {
         console.log("Error uploading blog:", err);

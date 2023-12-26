@@ -7,17 +7,17 @@ function Description({
   setDescription,
   setSmallDesc,
 }: DescriptionProps) {
-  // ?? Setting Description to sessionstorage
+  // ?? Setting Description to localStorage
   useEffect(() => {
     description.replace(/\s/g, "").length < 2
       ? setSmallDesc(true)
       : setSmallDesc(false);
 
     if (!description) return;
-    sessionStorage.setItem("description", description);
+    localStorage.setItem("description", description);
 
     return () => {
-      sessionStorage.removeItem("description");
+      localStorage.removeItem("description");
     };
   }, [description, setSmallDesc]);
 

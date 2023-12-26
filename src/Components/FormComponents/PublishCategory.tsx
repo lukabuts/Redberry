@@ -19,37 +19,37 @@ function PublishCategory({
   categoriesFilter,
 }: PublishCategoryProps) {
   const [activeInput, setActiveInput] = useState(false);
-  // ?? Setting Items to sessionstorage
+  // ?? Setting Items to localStorage
   // ! publish Date
   useEffect(() => {
     if (!publishDate) return;
-    sessionStorage.setItem("publishDate", publishDate);
+    localStorage.setItem("publishDate", publishDate);
 
     return () => {
-      sessionStorage.removeItem("publishDate");
+      localStorage.removeItem("publishDate");
     };
   }, [publishDate]);
 
   // ! selectedCategories
   useEffect(() => {
     if (selectedCategories.length === 0) return;
-    sessionStorage.setItem(
+    localStorage.setItem(
       "selectedCategories",
       JSON.stringify(selectedCategories)
     );
 
     return () => {
-      sessionStorage.removeItem("selectedCategories");
+      localStorage.removeItem("selectedCategories");
     };
   }, [selectedCategories]);
 
   // ! general Category Data
   useEffect(() => {
     if (categories.length === 0) return;
-    sessionStorage.setItem("categories", JSON.stringify(categories));
+    localStorage.setItem("categories", JSON.stringify(categories));
 
     return () => {
-      sessionStorage.removeItem("categories");
+      localStorage.removeItem("categories");
     };
   }, [categories]);
 
@@ -59,11 +59,11 @@ function PublishCategory({
       setShowCategories(false);
       return;
     }
-    sessionStorage.setItem("categoriesFilter", categoriesFilter);
+    localStorage.setItem("categoriesFilter", categoriesFilter);
     getCategories();
 
     return () => {
-      sessionStorage.removeItem("categoriesFilter");
+      localStorage.removeItem("categoriesFilter");
     };
   }, [categoriesFilter]);
 

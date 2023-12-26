@@ -15,7 +15,7 @@ function AuthorTitle({
   smallAuthor,
   smallTitle,
 }: AuthorTitleProps) {
-  // ?? Setting changes to sessionstorage
+  // ?? Setting changes to localStorage
   // ! Author
   useEffect(() => {
     // Small input
@@ -38,10 +38,10 @@ function AuthorTitle({
     }
 
     if (!author) return;
-    sessionStorage.setItem("author", author);
+    localStorage.setItem("author", author);
 
     return () => {
-      sessionStorage.removeItem("author");
+      localStorage.removeItem("author");
     };
   }, [author, setAuthor, setOnlyGeo, setSmallAuthor, setmin2Words]);
 
@@ -52,10 +52,10 @@ function AuthorTitle({
       : setSmallTitle(false);
 
     if (!title) return;
-    sessionStorage.setItem("title", title);
+    localStorage.setItem("title", title);
 
     return () => {
-      sessionStorage.removeItem("title");
+      localStorage.removeItem("title");
     };
   }, [title, setSmallTitle]);
 

@@ -21,10 +21,10 @@ function EmailBtn({
       ? setLongEmail(true)
       : setLongEmail(false);
     if (!email) return;
-    sessionStorage.setItem("email", email);
+    localStorage.setItem("email", email);
 
     return () => {
-      sessionStorage.removeItem("email");
+      localStorage.removeItem("email");
     };
   }, [email, setValidEmail, setLongEmail]);
   // ! Handling User E-mail
