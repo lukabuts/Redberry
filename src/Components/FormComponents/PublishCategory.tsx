@@ -22,49 +22,45 @@ function PublishCategory({
   // ?? Setting Items to localStorage
   // ! publish Date
   useEffect(() => {
-    if (!publishDate) return;
-    localStorage.setItem("publishDate", publishDate);
-
-    return () => {
+    //Saving info in localstorage
+    if (publishDate.length === 0) {
       localStorage.removeItem("publishDate");
-    };
+    } else {
+      localStorage.setItem("publishDate", publishDate);
+    }
   }, [publishDate]);
 
   // ! selectedCategories
   useEffect(() => {
-    if (selectedCategories.length === 0) return;
-    localStorage.setItem(
-      "selectedCategories",
-      JSON.stringify(selectedCategories)
-    );
-
-    return () => {
+    //Saving info in localstorage
+    if (selectedCategories.length === 0) {
       localStorage.removeItem("selectedCategories");
-    };
+    } else {
+      localStorage.setItem(
+        "selectedCategories",
+        JSON.stringify(selectedCategories)
+      );
+    }
   }, [selectedCategories]);
 
   // ! general Category Data
   useEffect(() => {
-    if (categories.length === 0) return;
-    localStorage.setItem("categories", JSON.stringify(categories));
-
-    return () => {
+    //Saving info in localstorage
+    if (categories.length === 0) {
       localStorage.removeItem("categories");
-    };
+    } else {
+      localStorage.setItem("categories", JSON.stringify(categories));
+    }
   }, [categories]);
 
   // ! categories Filter
   useEffect(() => {
+    //Saving info in localstorage
     if (categoriesFilter.length === 0) {
-      setShowCategories(false);
-      return;
-    }
-    localStorage.setItem("categoriesFilter", categoriesFilter);
-    getCategories();
-
-    return () => {
       localStorage.removeItem("categoriesFilter");
-    };
+    } else {
+      localStorage.setItem("categoriesFilter", categoriesFilter);
+    }
   }, [categoriesFilter]);
 
   // ?? Handle Changes
@@ -150,6 +146,7 @@ function PublishCategory({
             <input
               onChange={(e) => {
                 setCategoriesFilter(e.target.value.trim());
+                setShowCategories(true);
               }}
               onFocus={() => {
                 setActiveInput(true);

@@ -20,21 +20,20 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
   // Remove Image
   function removeImage() {
     setImage("");
+    localStorage.removeItem("image");
     setImageError(false);
   }
 
   // Set image to localStorage
   useEffect(() => {
     if (image) {
+      localStorage.setItem("imageName", image.name);
       const reader = new FileReader();
       reader.onloadend = () => {
         localStorage.setItem("image", reader.result as string);
       };
       reader.readAsDataURL(image);
     }
-    return () => {
-      localStorage.removeItem("image");
-    };
   }, [image]);
 
   // Getting stored image
@@ -42,7 +41,11 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
     const storedImage = localStorage.getItem("image");
     if (storedImage) {
       const blob = dataURLtoBlob(storedImage);
-      const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+
+      const imageName = localStorage.getItem("imageName");
+
+      const file = new File([blob], `${imageName}`);
+
       setImage(file);
     }
   }, [setImage]);

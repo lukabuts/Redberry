@@ -140,7 +140,9 @@ function NewBlogInfo() {
       .then(() => {
         setSuccess(true);
         setResultError(false);
-        // !!!!
+        // Removing items from localstorage
+        localStorage.removeItem("image");
+        localStorage.removeItem("imageName");
         setImage("");
         setAuthor("");
         setTitle("");
@@ -149,7 +151,6 @@ function NewBlogInfo() {
         setEmail("");
         setSelectedCategories([]);
         setCategories([]);
-        // !!!!
       })
       .catch((err) => {
         console.log("Error uploading blog:", err);

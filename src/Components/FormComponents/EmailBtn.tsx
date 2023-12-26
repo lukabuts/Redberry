@@ -20,12 +20,13 @@ function EmailBtn({
     email.trim().split(" ").length !== 1
       ? setLongEmail(true)
       : setLongEmail(false);
-    if (!email) return;
-    localStorage.setItem("email", email);
 
-    return () => {
+    //Saving info in localstorage
+    if (email.length === 0) {
       localStorage.removeItem("email");
-    };
+    } else {
+      localStorage.setItem("email", email);
+    }
   }, [email, setValidEmail, setLongEmail]);
   // ! Handling User E-mail
   function handleEmail(e: React.ChangeEvent<HTMLInputElement>) {

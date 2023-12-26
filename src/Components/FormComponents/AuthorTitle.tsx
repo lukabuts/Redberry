@@ -37,12 +37,12 @@ function AuthorTitle({
       setOnlyGeo(true);
     }
 
-    if (!author) return;
-    localStorage.setItem("author", author);
-
-    return () => {
+    //Saving info in localstorage
+    if (author.length === 0) {
       localStorage.removeItem("author");
-    };
+    } else {
+      localStorage.setItem("author", author);
+    }
   }, [author, setAuthor, setOnlyGeo, setSmallAuthor, setmin2Words]);
 
   // !Title
@@ -51,12 +51,12 @@ function AuthorTitle({
       ? setSmallTitle(true)
       : setSmallTitle(false);
 
-    if (!title) return;
-    localStorage.setItem("title", title);
-
-    return () => {
+    //Saving info in localstorage
+    if (title.length === 0) {
       localStorage.removeItem("title");
-    };
+    } else {
+      localStorage.setItem("title", title);
+    }
   }, [title, setSmallTitle]);
 
   // ?? Handle Changes

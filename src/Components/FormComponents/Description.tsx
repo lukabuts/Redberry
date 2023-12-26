@@ -13,12 +13,12 @@ function Description({
       ? setSmallDesc(true)
       : setSmallDesc(false);
 
-    if (!description) return;
-    localStorage.setItem("description", description);
-
-    return () => {
+    //Saving info in localstorage
+    if (description.length === 0) {
       localStorage.removeItem("description");
-    };
+    } else {
+      localStorage.setItem("description", description);
+    }
   }, [description, setSmallDesc]);
 
   // ! Handle Description Textarea
