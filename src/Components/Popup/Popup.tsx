@@ -72,8 +72,8 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
         className="fixed left-0 top-0 w-full h-full cursor-pointer bg-black_ bg-opacity-[0.24] z-popupCloser "
       ></div>
       {/* Popup */}
-      <div className="absolute top-0 left-0 flex items-center justify-center w-full h-full">
-        <div className="relative w-full m-auto bg-white px-popup_x py-popup_y rounded-12 max-w-popup z-popup">
+      <div className="fixed flex items-center justify-center w-full overflow-hidden centeredItem max-w-popup rounded-12 z-popup">
+        <div className="relative w-full bg-white px-popup_x py-popup_y">
           {/* X icon */}
           <button
             onClick={closePopup}

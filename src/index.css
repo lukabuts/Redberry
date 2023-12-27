@@ -31,4 +31,10 @@
     justify-content: space-around;
     gap: 56px 32px;
   }
+  /* centered item */
+  .centeredItem {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
