@@ -70,14 +70,14 @@ function NewBlogInfo() {
     // Avoid Scrolling While Popup is active
     const body = document.getElementById("body");
     if (!body) return;
-    else if (!success) {
+    else if (!activePopup) {
       body.classList.contains("overflow-hidden") &&
         body.classList.remove("overflow-hidden");
-    } else if (success) {
+    } else if (activePopup) {
       !body.classList.contains("overflow-hidden") &&
         body.classList.add("overflow-hidden");
     }
-  }, [success]);
+  }, [activePopup]);
 
   // ! Is everithing ok?
   useEffect(() => {
