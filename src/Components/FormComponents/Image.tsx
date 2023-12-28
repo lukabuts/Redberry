@@ -8,11 +8,10 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
   // Handle image
   function handleImage(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
-    if (file) {
+    if (file && file.type.startsWith("image")) {
       setImage(file);
       setImageError(false);
     } else {
-      console.log("File Not Found");
       setImageError(true);
       setImage(null);
     }
@@ -88,30 +87,41 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
         </div>
       ) : (
         // Image not Uploaded
-        <div
-          className={`relative flex flex-col items-center justify-center border-dashed gap-addBlog h-imgUpload bg-imgUpload  border-input rounded-12 ${
-            image && imageError
-              ? "border-err"
-              : !image &&
-                !imageError &&
-                "border-imgUpload hover:bg-imgUpload_hover"
-          }`}
-        >
-          <img width={40} height={40} src={folder_add} alt="Add image" />
-          <p className="text-black_ text-normal font-400 leading-20 ">
-            ჩააგდეთ ფაილი აქ ან{" "}
-            <span className="underline font-500">აირჩიეთ ფაილი</span>
-          </p>
-          <input
-            onChange={handleImage}
-            required
-            className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-            type="file"
-            name="image"
-            accept="image/*"
-            id="image"
-          />
-        </div>
+        <>
+          <div
+            className={`relative flex flex-col items-center justify-center border-dashed gap-addBlog h-imgUpload   border-input rounded-12 ${
+              imageError
+                ? "border-err bg-err_bg"
+                : !image &&
+                  !imageError &&
+                  "border-imgUpload hover:bg-imgUpload_hover bg-imgUpload"
+            }`}
+          >
+            <img width={40} height={40} src={folder_add} alt="Add image" />
+            <p className="text-black_ text-normal font-400 leading-20 ">
+              ჩააგდეთ ფაილი აქ ან{" "}
+              <span className="underline font-500">აირჩიეთ ფაილი</span>
+            </p>
+            <input
+              onChange={handleImage}
+              required
+              className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+              type="file"
+              name="image"
+              accept="image/*"
+              id="image"
+            />
+          </div>
+          <div
+            className={`${
+              imageError
+                ? "text-err text-normal"
+                : !image && !imageError && "hidden"
+            }`}
+          >
+            <span>ატვირთეთ ფოტო!</span>
+          </div>
+        </>
       )}
     </div>
   );
