@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BackBtn from "../../Components/BackBtn/BackBtn";
 import Header from "../../Components/Header/Header";
 import Post from "../../Components/Post/Post";
@@ -6,6 +6,7 @@ import blogProps from "../../Types/blogProps";
 import axios from "axios";
 import Posts from "../../Types/posts";
 import SwiperBtns from "../../Components/SwiperBtns/SwiperBtns";
+import { TokenContext } from "../../App";
 import { Helmet } from "react-helmet";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
@@ -18,7 +19,7 @@ function Blog({ id, posts }: blogProps) {
   const [postError, setPostError] = useState(false);
   const [post, setPost] = useState<Posts>();
   const [similarPosts, setSimilarPosts] = useState<Posts[]>([]);
-  const token = localStorage.getItem("token");
+  const token = useContext(TokenContext);
 
   useEffect(() => {
     // Getting Post Data

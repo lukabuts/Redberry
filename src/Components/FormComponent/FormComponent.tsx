@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Data from "../../Types/data";
 import Image from "../FormComponents/Image";
 import AuthorTitle from "../FormComponents/AuthorTitle";
@@ -6,11 +6,12 @@ import Description from "../FormComponents/Description";
 import PublishCategory from "../FormComponents/PublishCategory";
 import EmailBtn from "../FormComponents/EmailBtn";
 import Notification from "../FormComponents/Notification";
+import { TokenContext } from "../../App";
 import axios from "axios";
 
 function NewBlogInfo() {
   // Image
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<File | null>(null);
   const [imageError, setImageError] = useState(false);
   // Author
   const [author, setAuthor] = useState(localStorage.getItem("author") || "");
@@ -65,6 +66,8 @@ function NewBlogInfo() {
   const [resultError, setResultError] = useState(false);
   // Show Popup
   const [activePopup, setActivePopup] = useState(false);
+  // Token
+  const token = useContext(TokenContext);
 
   useEffect(() => {
     // Avoid Scrolling While Popup is active
@@ -120,12 +123,11 @@ function NewBlogInfo() {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const token = localStorage.getItem("token");
     const formData = new FormData();
     formData.append("author", author);
     formData.append("categories", JSON.stringify(selectedCategories));
     formData.append("description", description);
-    formData.append("image", image);
+    image !== null && formData.append("image", image);
     formData.append("publish_date", publishDate);
     formData.append("title", title);
     formData.append("email", email);
@@ -143,7 +145,7 @@ function NewBlogInfo() {
         // Removing items from localstorage
         localStorage.removeItem("image");
         localStorage.removeItem("imageName");
-        setImage("");
+        setImage(null);
         setAuthor("");
         setTitle("");
         setDescription("");

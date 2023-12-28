@@ -6,7 +6,8 @@ import BackBtn from "../../Components/BackBtn/BackBtn";
 import { Helmet } from "react-helmet";
 
 function CreatePost() {
-  const [signedIn, _] = useContext(Context);
+  const signedIn = useContext(Context);
+
   return (
     <div>
       <Header creatingPost={true} />
@@ -14,7 +15,7 @@ function CreatePost() {
         <title>დაამატე ბლოგი</title>
       </Helmet>
       <BackBtn />
-      {signedIn ? (
+      {signedIn[0] ? (
         <FormComponent />
       ) : (
         <>

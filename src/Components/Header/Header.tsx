@@ -6,7 +6,7 @@ import { Context } from "../../App";
 import HeaderProps from "../../Types/headerProps";
 
 function Header({ creatingPost }: HeaderProps) {
-  const [signedIn, _] = useContext(Context);
+  const signedIn = useContext(Context);
   const [activePopup, setActivePopup] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function Header({ creatingPost }: HeaderProps) {
   }, [activePopup]);
 
   function handleClick() {
-    !signedIn && setActivePopup(true);
+    !signedIn[0] && setActivePopup(true);
   }
 
   return (
@@ -36,7 +36,7 @@ function Header({ creatingPost }: HeaderProps) {
       ) : null}
       <header
         className={`sticky top-0 flex items-center bg-white h-header px-main z-header ${
-          creatingPost && signedIn ? "justify-center" : "justify-between"
+          creatingPost && signedIn[0] ? "justify-center" : "justify-between"
         }`}
       >
         <Link to="/">
@@ -48,15 +48,15 @@ function Header({ creatingPost }: HeaderProps) {
             alt="Logo"
           />
         </Link>
-        {creatingPost && signedIn ? (
+        {creatingPost && signedIn[0] ? (
           ""
         ) : (
           <button onClick={handleClick}>
             <Link
               className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
-              to={signedIn ? "/post" : ""}
+              to={signedIn[0] ? "/post" : ""}
             >
-              {signedIn ? "დაამატე ბლოგი" : "შესვლა"}
+              {signedIn[0] ? "დაამატე ბლოგი" : "შესვლა"}
             </Link>
           </button>
         )}

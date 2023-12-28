@@ -9,17 +9,18 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
   function handleImage(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (file) {
-      setImage(e.target.files?.[0]);
+      setImage(file);
       setImageError(false);
     } else {
       console.log("File Not Found");
       setImageError(true);
+      setImage(null);
     }
   }
 
   // Remove Image
   function removeImage() {
-    setImage("");
+    setImage(null);
     localStorage.removeItem("image");
     localStorage.removeItem("imageName");
     setImageError(false);
