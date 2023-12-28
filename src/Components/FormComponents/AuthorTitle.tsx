@@ -91,7 +91,8 @@ function AuthorTitle({
                 ? "border-success bg-success_bg"
                 : author.trim().length > 0
                 ? "border-err bg-err_bg"
-                : author.trim().length === 0 && "border-input_normal bg-inp_bg "
+                : author.trim().length === 0 &&
+                  "border-input_normal bg-inp_bg hover:bg-inp_bg_hover"
             }`}
             id="author"
             type="text"
@@ -154,7 +155,7 @@ function AuthorTitle({
                 ? "border-success bg-success_bg"
                 : title.length > 0
                 ? "border-err bg-err_bg"
-                : "border-input_normal bg-inp_bg "
+                : "border-input_normal bg-inp_bg hover:bg-inp_bg_hover"
             }`}
             type="text"
             name="title"

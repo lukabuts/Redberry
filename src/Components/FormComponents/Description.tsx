@@ -43,7 +43,7 @@ function Description({
         name="description"
         className={`mt-[8px] w-full px-inp_x py-inp_y rounded-12 border-input h-textarea focus:outline-none resize-none text-normal text-gray_ font-400 leading-20  focus:border-active_inp focus:bg-active_inp_bg ${
           description.trim().length === 0
-            ? "border-input_normal bg-inp_bg"
+            ? "border-input_normal bg-inp_bg hover:bg-inp_bg_hover"
             : !smallDesc
             ? "border-success bg-success_bg"
             : "border-err bg-err_bg"

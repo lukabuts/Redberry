@@ -23,7 +23,7 @@ function SwiperBtns() {
   return (
     <div className="flex gap-components">
       <button
-        className="flex items-center justify-center rounded-full bg-active_inp w-btn h-btn disabled:bg-disabled_btn"
+        className="flex items-center justify-center rounded-full bg-active_inp w-btn h-btn disabled:bg-disabled_btn hover:bg-active_btn_hover"
         onClick={() => {
           swiper.slidePrev();
         }}
@@ -32,7 +32,7 @@ function SwiperBtns() {
         <img src={arrow_left} alt="Go Back" />
       </button>
       <button
-        className="flex items-center justify-center rounded-full bg-active_inp w-btn h-btn disabled:bg-disabled_btn"
+        className="flex items-center justify-center rounded-full bg-active_inp w-btn h-btn disabled:bg-disabled_btn hover:bg-active_btn_hover"
         onClick={() => swiper && swiper.slideNext()}
         disabled={disabledRight}
       >

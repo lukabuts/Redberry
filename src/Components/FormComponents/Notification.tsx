@@ -25,7 +25,7 @@ function Notification({
           {/* X icon */}
           <button
             onClick={closePopup}
-            className="absolute top-x_icon right-x_icon"
+            className="absolute p-2 rounded-full top-x_icon right-x_icon hover:bg-x_btn_hoer"
           >
             <img src={x} alt="exit" />
           </button>
@@ -55,7 +55,7 @@ function Notification({
               closePopup();
               success && !resultError && window.open("/", "_self");
             }}
-            className="flex-1 mt-[48px] text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
+            className="flex-1 mt-[48px] text-white bg-active_inp px-header_login_x py-header_login_y rounded-header_login hover:bg-active_btn_hover"
           >
             {buttonInput}
           </button>

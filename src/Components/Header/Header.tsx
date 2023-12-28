@@ -53,7 +53,7 @@ function Header({ creatingPost }: HeaderProps) {
         ) : (
           <button onClick={handleClick}>
             <Link
-              className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login"
+              className="text-white bg-active_inp px-header_login_x py-header_login_y rounded-header_login hover:bg-active_btn_hover"
               to={signedIn[0] ? "/post" : ""}
             >
               {signedIn[0] ? "დაამატე ბლოგი" : "შესვლა"}

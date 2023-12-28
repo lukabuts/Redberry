@@ -62,7 +62,7 @@ function Post({
         <div>
           <button onClick={scrollTop}>
             <Link
-              className="flex text-normal font-500 text-see_more"
+              className="flex text-normal font-500 text-active_inp hover:accent-active_btn_hover"
               to={`/blog-${id}`}
             >
               სრულად ნახვა

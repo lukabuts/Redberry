@@ -52,7 +52,8 @@ function EmailBtn({
               ? "border-success bg-success_bg"
               : email.trim().length > 0
               ? "border-err bg-err_bg"
-              : email.trim().length === 0 && "border-input_normal bg-inp_bg  "
+              : email.trim().length === 0 &&
+                "border-input_normal bg-inp_bg hover:bg-inp_bg_hover"
           }`}
           type="text"
           name="e-mail"
@@ -77,7 +78,7 @@ function EmailBtn({
       {/* Submit Button */}
       <button
         disabled={!isEverithingOk || loadingRes}
-        className="self-end w-full text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login max-w-authorInp disabled:bg-disabled_btn disabled:text-white disabled:cursor-not-allowed"
+        className="self-end w-full text-white bg-active_inp px-header_login_x py-header_login_y rounded-header_login max-w-authorInp disabled:bg-disabled_btn disabled:text-white disabled:cursor-not-allowed hover:bg-active_btn_hover"
         type="submit"
       >
         {loadingRes ? "ქვეყნდება..." : "გამოქვეყნება"}

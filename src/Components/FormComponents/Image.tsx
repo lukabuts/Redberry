@@ -92,7 +92,9 @@ function Image({ setImage, setImageError, imageError, image }: imageProps) {
           className={`relative flex flex-col items-center justify-center border-dashed gap-addBlog h-imgUpload bg-imgUpload  border-input rounded-12 ${
             image && imageError
               ? "border-err"
-              : !image && !imageError && "border-input_normal"
+              : !image &&
+                !imageError &&
+                "border-imgUpload hover:bg-imgUpload_hover"
           }`}
         >
           <img width={40} height={40} src={folder_add} alt="Add image" />

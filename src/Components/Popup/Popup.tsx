@@ -78,7 +78,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
           {/* X icon */}
           <button
             onClick={closePopup}
-            className="absolute top-x_icon right-x_icon"
+            className="absolute p-2 rounded-full top-x_icon right-x_icon hover:bg-x_btn_hoer"
           >
             <img src={x} alt="exit" />
           </button>
@@ -110,7 +110,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
                   className={`px-inp_x py-inp_y rounded-12 border-input  focus:outline-none focus:border-active_inp focus:bg-active_inp_bg ${
                     loginError || longEmail
                       ? " border-err bg-err_bg"
-                      : "border-input_normal"
+                      : "border-input_normal hover:bg-inp_bg_hover"
                   }`}
                   type="email"
                   name="email"
@@ -134,7 +134,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
               onClick={() => {
                 signedIn && closePopup();
               }}
-              className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login mt-[24px] disabled:bg-disabled_btn disabled:text-white  disabled:cursor-not-allowed "
+              className="text-white bg-active_inp px-header_login_x py-header_login_y rounded-header_login mt-[24px] disabled:bg-disabled_btn disabled:text-white  disabled:cursor-not-allowed hover:bg-active_btn_hover"
               type="submit"
             >
               {!signedIn && !loading

@@ -115,10 +115,10 @@ function PublishCategory({
           required
           onChange={handleDate}
           value={publishDate}
-          className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input border-input_normal bg-inp_bg focus:outline-none text-normal text-gray_ font-400 leading-20  focus:border-active_inp focus:bg-active_inp_bg ${
+          className={`my-[8px] w-full px-inp_x py-inp_y rounded-12 border-input focus:outline-none text-normal text-gray_ font-400 leading-20  focus:border-active_inp focus:bg-active_inp_bg ${
             publishDate
               ? "border-success bg-success_bg"
-              : "border-input_normal bg-inp_bg"
+              : "border-input_normal bg-inp_bg hover:bg-inp_bg_hover"
           }`}
           type="date"
           name="Date"
@@ -139,7 +139,7 @@ function PublishCategory({
               ? "bg-active_inp_bg border-active_inp"
               : selectedCategories.length > 0
               ? "bg-success_bg border-success"
-              : "border-input_normal bg-inp_bg "
+              : "border-input_normal bg-inp_bg hover:bg-inp_bg_hover"
           }`}
         >
           <div className="relative flex flex-1 overflow-hidden py-inp_y pl-[6px]">
