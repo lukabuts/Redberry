@@ -10,12 +10,12 @@ function PublishCategory({
   setSelectedCategories,
   setShowCategories,
   categories,
-  setLoading,
+  setLoadingCategories,
   setCategories,
   publishDate,
   setCategoriesFilter,
   showCategories,
-  loading,
+  loadingCategories,
   categoriesFilter,
 }: PublishCategoryProps) {
   const [activeInput, setActiveInput] = useState(false);
@@ -87,7 +87,7 @@ function PublishCategory({
   function getCategories() {
     setShowCategories(true);
     if (categories.length === 0) {
-      setLoading(true);
+      setLoadingCategories(true);
       axios
         .get("https://api.blog.redberryinternship.ge/api/categories")
         .then((res) => {
@@ -97,7 +97,7 @@ function PublishCategory({
           console.log(err);
         })
         .finally(() => {
-          setLoading(false);
+          setLoadingCategories(false);
         });
     }
   }
@@ -200,7 +200,7 @@ function PublishCategory({
                 : "absolute"
             }`}
           >
-            {!loading ? (
+            {!loadingCategories ? (
               categories
                 .filter((x) => x.title.includes(categoriesFilter))
                 .map((category) => {

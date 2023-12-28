@@ -50,7 +50,7 @@ function NewBlogInfo() {
   const [categoriesFilter, setCategoriesFilter] = useState(
     localStorage.getItem("categoriesFilter") || ""
   );
-  const [loading, setLoading] = useState(false);
+  const [loadingCategories, setLoadingCategories] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   // E-mail
   const [email, setEmail] = useState(localStorage.getItem("email") || "");
@@ -223,12 +223,12 @@ function NewBlogInfo() {
           setSelectedCategories={setSelectedCategories}
           setShowCategories={setShowCategories}
           categories={categories}
-          setLoading={setLoading}
+          setLoadingCategories={setLoadingCategories}
           setCategories={setCategories}
           publishDate={publishDate}
           setCategoriesFilter={setCategoriesFilter}
           showCategories={showCategories}
-          loading={loading}
+          loadingCategories={loadingCategories}
           categoriesFilter={categoriesFilter}
         />
 

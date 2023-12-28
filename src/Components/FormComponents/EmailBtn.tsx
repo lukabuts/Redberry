@@ -77,10 +77,10 @@ function EmailBtn({
       {/* Submit Button */}
       <button
         disabled={!isEverithingOk || loadingRes}
-        className="self-end w-full text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login max-w-authorInp disabled:bg-disabled_btn disabled:text-white disabled:cursor-not-allowed "
+        className="self-end w-full text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login max-w-authorInp disabled:bg-disabled_btn disabled:text-white disabled:cursor-not-allowed"
         type="submit"
       >
-        გამოქვეყნება
+        {loadingRes ? "ქვეყნდება..." : "გამოქვეყნება"}
       </button>
     </>
   );

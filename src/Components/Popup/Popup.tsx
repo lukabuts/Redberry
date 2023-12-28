@@ -43,6 +43,7 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
   }, [signedIn]);
 
   function closePopup() {
+    if (loading) return;
     setActivePopup(false);
     if (!signedIn) return;
     window.open("/", "_self");
@@ -136,7 +137,11 @@ function Popup({ setActivePopup, mainText, successText }: PopupProps) {
               className="text-white bg-header_login px-header_login_x py-header_login_y rounded-header_login mt-[24px] disabled:bg-disabled_btn disabled:text-white  disabled:cursor-not-allowed "
               type="submit"
             >
-              {signedIn ? "კარგი" : "შესვლა"}
+              {!signedIn && !loading
+                ? "შესვლა"
+                : !signedIn && loading
+                ? "დაელოდეთ..."
+                : "კარგი"}
             </button>
           </form>
         </div>
