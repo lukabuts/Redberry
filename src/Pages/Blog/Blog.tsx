@@ -8,8 +8,6 @@ import Posts from "../../Types/posts";
 import SwiperBtns from "../../Components/SwiperBtns/SwiperBtns";
 import { TokenContext } from "../../App";
 import { Helmet } from "react-helmet";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Loading from "../../Components/Loading/Loading";
@@ -157,22 +155,20 @@ function Blog({ id, posts }: blogProps) {
               </h1>
             ) : (
               // Swiper
-              <div className="w-full">
-                <Swiper
-                  modules={[Navigation, Pagination, A11y]}
-                  spaceBetween={32}
-                  slidesPerView={"auto"}
-                  className="flex flex-col-reverse gap-blog"
+              <div className="flex flex-col w-full gap-blog">
+                <div className="flex items-center justify-between">
+                  <h3 className=" text-black_ text-32 font-700">
+                    მსგავსი სტატიები
+                  </h3>
+                  <SwiperBtns />
+                </div>
+                <div
+                  className="flex overflow-hidden gap-post_container_x"
+                  id="swiperDiv"
                 >
-                  <div className="flex items-center justify-between">
-                    <h3 className=" text-black_ text-32 font-700">
-                      მსგავსი სტატიები
-                    </h3>
-                    <SwiperBtns />
-                  </div>
                   {similarPosts.map((post) => {
                     return (
-                      <SwiperSlide className="max-w-post" key={post.id}>
+                      <div className="w-full">
                         <Post
                           img={post.image}
                           author={post.author}
@@ -182,10 +178,10 @@ function Blog({ id, posts }: blogProps) {
                           desc={post.description}
                           postCategories={post.categories}
                         />
-                      </SwiperSlide>
+                      </div>
                     );
                   })}
-                </Swiper>
+                </div>
               </div>
             )}
           </>
