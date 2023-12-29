@@ -62,11 +62,13 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
           <img src={blogbg} width={624} height={200} alt="Blog Background" />
         </div>
         {/* Categories */}
-        <div className="flex flex-wrap content-center justify-center gap-components mb-home_container_t">
-          <Categories
-            selectedFilters={selectedFilters}
-            setSelectedFilters={setSelectedFilters}
-          />
+        <div className="specialScroll mb-home_container_t ">
+          <div className="flex items-center py-1 mx-auto w-fit gap-components">
+            <Categories
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
+            />
+          </div>
         </div>
 
         {/* Posts */}

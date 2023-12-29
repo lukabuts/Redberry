@@ -44,14 +44,15 @@ function Categories({ selectedFilters, setSelectedFilters }: CategoriesProps) {
               handleClick(item.id);
             }}
             className={`cursor-pointer rounded-component_item px-component_item_x py-component_item_y ${
-              selectedFilters.find((x: number) => x === item.id)
-                ? "border-black border-input"
-                : ""
+              selectedFilters.find((x: number) => x === item.id) &&
+              "border-black border-input"
             }`}
             key={item.id}
             style={{ background: item.background_color }}
           >
-            <p style={{ color: item.text_color }}>{item.title}</p>
+            <p className="w-max" style={{ color: item.text_color }}>
+              {item.title}
+            </p>
           </div>
         );
       })}
