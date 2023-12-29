@@ -12,19 +12,18 @@ function SwiperBtns() {
     if (swiper) {
       swiper.on("slideChange", handleSlideChange);
     }
+
+    function handleSlideChange() {
+      setDisabledLeft(swiper.isBeginning);
+      setDisabledRight(swiper.isEnd);
+    }
   }, [swiper]);
 
-  function handleSlideChange() {
-    setDisabledLeft(swiper.isBeginning);
-    setDisabledRight(swiper.isEnd);
-  }
   return (
     <div className="flex gap-components">
       <button
         className="flex items-center justify-center rounded-full bg-active_inp w-btn h-btn disabled:bg-disabled_btn hover:bg-active_btn_hover"
-        onClick={() => {
-          swiper.slidePrev();
-        }}
+        onClick={() => swiper && swiper.slidePrev()}
         disabled={disabledLeft}
       >
         <img src={arrow_left} alt="Go Back" />
