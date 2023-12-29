@@ -166,7 +166,7 @@ function Blog({ id, posts }: blogProps) {
                 >
                   {similarPosts.map((post) => {
                     return (
-                      <div key={post.id} className="w-full">
+                      <div key={post.id} className="w-full max-w-post">
                         <Post
                           img={post.image}
                           author={post.author}
