@@ -1,21 +1,27 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import Categories from "../../Components/Categories/Categories";
 import blogbg from "../../assets/images/blogbg.svg";
 import Post from "../../Components/Post/Post";
-import Header from "../../Components/Header/Header";
 import HomeProps from "../../Types/homeProps";
 import { Helmet } from "react-helmet";
 import logo from "../../assets/images/logo.svg";
 import Loading from "../../Components/Loading/Loading";
+import { PostPageContext } from "../../App";
 
 function Home({ posts, postsLoading, postsError }: HomeProps) {
   const filters = localStorage.getItem("filters");
   const parsedFilters = filters ? JSON.parse(filters) : null;
   const [selectedFilters, setSelectedFilters] = useState(parsedFilters || []);
 
+  const setPostPage = useContext(PostPageContext);
+  // Setting Postpage false
+
+  useEffect(() => {
+    setPostPage(false);
+  }, [setPostPage]);
+
   return (
     <>
-      <Header creatingPost={false} />
       <Helmet>
         {/* General */}
         <meta

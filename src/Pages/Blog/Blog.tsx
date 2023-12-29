@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import BackBtn from "../../Components/BackBtn/BackBtn";
-import Header from "../../Components/Header/Header";
 const Post = React.lazy(() => import("../../Components/Post/Post"));
 import blogProps from "../../Types/blogProps";
 import axios from "axios";
 import Posts from "../../Types/posts";
 import SwiperBtns from "../../Components/SwiperBtns/SwiperBtns";
-import { TokenContext } from "../../App";
+import { TokenContext, PostPageContext } from "../../App";
 import { Helmet } from "react-helmet";
 import Loading from "../../Components/Loading/Loading";
 
@@ -17,6 +16,11 @@ function Blog({ id, posts }: blogProps) {
   const [post, setPost] = useState<Posts>();
   const [similarPosts, setSimilarPosts] = useState<Posts[]>([]);
   const token = useContext(TokenContext);
+  const setPostPage = useContext(PostPageContext);
+  // Setting Postpage false
+  useEffect(() => {
+    setPostPage(false);
+  }, [setPostPage]);
 
   useEffect(() => {
     // Getting Post Data
@@ -64,7 +68,6 @@ function Blog({ id, posts }: blogProps) {
 
   return (
     <>
-      <Header creatingPost={false} />
       <Helmet>
         <title>{post?.title}</title>
         <meta property="og:title" content={post?.title} />

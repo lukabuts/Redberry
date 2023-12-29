@@ -1,16 +1,19 @@
-import { Context } from "../../App";
-import { useContext } from "react";
-import Header from "../../Components/Header/Header";
+import { Context, PostPageContext } from "../../App";
+import { useContext, useEffect } from "react";
 import FormComponent from "../../Components/FormComponent/FormComponent";
 import BackBtn from "../../Components/BackBtn/BackBtn";
 import { Helmet } from "react-helmet";
 
 function CreatePost() {
   const signedIn = useContext(Context);
+  const setPostPage = useContext(PostPageContext);
+  // Setting Postpage true
+  useEffect(() => {
+    setPostPage(true);
+  }, [setPostPage]);
 
   return (
     <div>
-      <Header creatingPost={true} />
       <Helmet>
         <title>დაამატე ბლოგი</title>
       </Helmet>

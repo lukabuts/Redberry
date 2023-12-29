@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
-import Header from "../../Components/Header/Header";
 import { Helmet } from "react-helmet";
 import logo from "../../assets/images/logo.svg";
-
+import { useContext, useEffect } from "react";
+import { PostPageContext } from "../../App";
 function NotFound() {
+  const setPostPage = useContext(PostPageContext);
+  // Setting Postpage false
+
+  useEffect(() => {
+    setPostPage(false);
+  }, [setPostPage]);
+
   return (
     <>
-      <Header creatingPost={false} />
       <Helmet>
         {/* General */}
         <meta
