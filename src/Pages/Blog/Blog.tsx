@@ -8,8 +8,6 @@ import Posts from "../../Types/posts";
 import SwiperBtns from "../../Components/SwiperBtns/SwiperBtns";
 import { TokenContext } from "../../App";
 import { Helmet } from "react-helmet";
-import "swiper/css";
-import "swiper/css/pagination";
 import Loading from "../../Components/Loading/Loading";
 
 function Blog({ id, posts }: blogProps) {
