@@ -4,27 +4,16 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. პოსტის ატვირთვის გვერდზე კატეგორიის ინფუთი ფილტრავს კატეგორიებს. სერჩის მსგავსია
+2. არჩეული კატეგორია ასარჩევი კატეგორიების სიიდან არ იშლება, როგორც დისქორდზე დაწერეს მენტორებმა.
+3. გამოქვეყვეყნების თარიღის ინფუთს არ აქვს მინიმალური რიცხვი, ასევე მენტორების შენიშვნით
+4. ელ-ფოსტა დაპოსტვისას არაა სავალდებულო, მაგრამ თუ შეყვანილია, უნდა აკმაყოფილებდეს შემდეგ მოთხოვნებს: 1. არ უნდა იყოს 1 სიტყვაზე მეტი; 2. უნდა მთავრდებოდეს redberry.ge-ით
+5. პოსტის გამოქვეყნებისას ფოფაფი შესაბამისი მესიჯით ჩნდება ყველა შემთხვევაში, გინდ წარმატებული იყოს და გინდ არა.
+6. ბლოგის გვერდზე თუ ბლოგის მსგავსი სტატია არ მოიძებნა, ჩნდება შესაბამისი მესიჯი.
+7. ყველა გვერდს აქვს განსხვავებულლი title. ბლოგის გვერდის title სტატიის სათაურია.
+8. ასევე, თუ ლინკი არასწორია და გვერდი ვერ მოიძებნა, ჩნდება შესაბამისი ფეიჯი
+9. პოსტები იფილტრება გამოქვეყნების დროის მიხედვით, როგორც ეს დოკუმენტაციაში ეწერა და შესაბამისად მომავლის პოსტი არ გამოჩნდება არც home და არც blog ფეიჯზე
+10. დროს ვიღებ იუზერის მხრიდან, შესაბამისად იუზერს შეუძლია ნახოს დამალული პოსტები თუ დროს 'გადაწევს' ))
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+P.S
+ბოლო კომიტში Removing swiper scc import დავწერე Removing swiper css import-ის მაგივრად და არ გამკიცხოთ :))
