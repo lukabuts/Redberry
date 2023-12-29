@@ -1,7 +1,7 @@
-import { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Categories from "../../Components/Categories/Categories";
 import blogbg from "../../assets/images/blogbg.svg";
-import Post from "../../Components/Post/Post";
+const Post = React.lazy(() => import("../../Components/Post/Post"));
 import HomeProps from "../../Types/homeProps";
 import { Helmet } from "react-helmet";
 import logo from "../../assets/images/logo.svg";
@@ -26,7 +26,7 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
         {/* General */}
         <meta
           name="description"
-          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგადოებას"
         />
         <meta
           name="keywords"
@@ -42,13 +42,13 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
         <meta property="og:url" content="https://redberry-kgnw.vercel.app/" />
         <meta
           property="og:description"
-          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგადოებას"
         />
 
         {/* Twitter */}
         <meta
           name="twitter:card"
-          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგაადოებას"
+          content="შექმენი და გაუზიარე საინტერესო ამბები ფართო საზოგადოებას"
         />
         <meta name="twitter:title" content="Redberry" />
         <meta
