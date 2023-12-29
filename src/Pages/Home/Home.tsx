@@ -95,7 +95,7 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
               ))}
           </div>
         ) : postsLoading ? (
-          <Loading />
+          <Loading fixed={false} />
         ) : (
           postsError && (
             <h1 className="text-center text-err text-24">

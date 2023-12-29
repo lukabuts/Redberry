@@ -63,7 +63,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <React.Suspense fallback={<Loading />}>
+                  <React.Suspense fallback={<Loading fixed={true} />}>
                     <Home
                       posts={posts}
                       postsLoading={postsLoading}
@@ -78,7 +78,7 @@ function App() {
                     key={post.id}
                     path={`/blog-${post.id}`}
                     element={
-                      <React.Suspense fallback={<Loading />}>
+                      <React.Suspense fallback={<Loading fixed={true} />}>
                         <Blog id={post.id} posts={posts} />
                       </React.Suspense>
                     }
@@ -88,7 +88,7 @@ function App() {
               <Route
                 path="/post"
                 element={
-                  <React.Suspense fallback={<Loading />}>
+                  <React.Suspense fallback={<Loading fixed={true} />}>
                     <CreatePost />
                   </React.Suspense>
                 }
@@ -97,7 +97,7 @@ function App() {
                 path="*"
                 element={
                   !postsLoading && (
-                    <React.Suspense fallback={<Loading />}>
+                    <React.Suspense fallback={<Loading fixed={true} />}>
                       <NotFound />
                     </React.Suspense>
                   )

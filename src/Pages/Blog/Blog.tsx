@@ -92,7 +92,7 @@ function Blog({ id, posts }: blogProps) {
           </h1>
         ) : // Loading
         postLoading ? (
-          <Loading />
+          <Loading fixed={true} />
         ) : (
           // Show Content
           <>
