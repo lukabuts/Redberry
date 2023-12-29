@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BackBtn from "../../Components/BackBtn/BackBtn";
 import Header from "../../Components/Header/Header";
-import Post from "../../Components/Post/Post";
+const Post = React.lazy(() => import("../../Components/Post/Post"));
 import blogProps from "../../Types/blogProps";
 import axios from "axios";
 import Posts from "../../Types/posts";
@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import Loading from "../../Components/Loading/Loading";
 
 function Blog({ id, posts }: blogProps) {
   const [noSimilarCategories, setNoSimilarCategories] = useState(false);
@@ -91,7 +92,7 @@ function Blog({ id, posts }: blogProps) {
           </h1>
         ) : // Loading
         postLoading ? (
-          <h1 className="text-4xl">იტვირთება პოსტი...</h1>
+          <Loading />
         ) : (
           // Show Content
           <>
@@ -100,6 +101,7 @@ function Blog({ id, posts }: blogProps) {
               <div className="flex justify-center overflow-hidden bg-imgUpload h-post_img rounded-12">
                 <img
                   src={post?.image}
+                  loading="lazy"
                   alt={post?.title}
                   className="object-cover w-full h-full"
                 />
@@ -168,17 +170,17 @@ function Blog({ id, posts }: blogProps) {
                     </h3>
                     <SwiperBtns />
                   </div>
-                  {similarPosts.map((z) => {
+                  {similarPosts.map((post) => {
                     return (
-                      <SwiperSlide className="max-w-post" key={z.id}>
+                      <SwiperSlide className="max-w-post" key={post.id}>
                         <Post
-                          img={z.image}
-                          author={z.author}
-                          date={z.publish_date}
-                          id={z.id}
-                          title={z.title}
-                          desc={z.description}
-                          postCategories={z.categories}
+                          img={post.image}
+                          author={post.author}
+                          date={post.publish_date}
+                          id={post.id}
+                          title={post.title}
+                          desc={post.description}
+                          postCategories={post.categories}
                         />
                       </SwiperSlide>
                     );

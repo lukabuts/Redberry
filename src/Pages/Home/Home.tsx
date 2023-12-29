@@ -6,6 +6,7 @@ import Header from "../../Components/Header/Header";
 import HomeProps from "../../Types/homeProps";
 import { Helmet } from "react-helmet";
 import logo from "../../assets/images/logo.svg";
+import Loading from "../../Components/Loading/Loading";
 
 function Home({ posts, postsLoading, postsError }: HomeProps) {
   const filters = localStorage.getItem("filters");
@@ -94,7 +95,7 @@ function Home({ posts, postsLoading, postsError }: HomeProps) {
               ))}
           </div>
         ) : postsLoading ? (
-          <h1 className="text-center text-24">იტვირთება პოსტები...</h1>
+          <Loading />
         ) : (
           postsError && (
             <h1 className="text-center text-err text-24">

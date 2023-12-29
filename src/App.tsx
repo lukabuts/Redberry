@@ -1,11 +1,12 @@
-import Blog from "./Pages/Blog/Blog";
-import Home from "./Pages/Home/Home";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import NotFound from "./Pages/NotFound/NotFound";
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import CreatePost from "./Pages/CreatePost/CreatePost";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+const Blog = React.lazy(() => import("./Pages/Blog/Blog"));
+const Home = React.lazy(() => import("./Pages/Home/Home"));
+const NotFound = React.lazy(() => import("./Pages/NotFound/NotFound"));
+const CreatePost = React.lazy(() => import("./Pages/CreatePost/CreatePost"));
 import Posts from "./Types/posts";
+import Loading from "./Components/Loading/Loading";
 
 export const Context = React.createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>]
@@ -62,11 +63,13 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <Home
-                    posts={posts}
-                    postsLoading={postsLoading}
-                    postsError={postsError}
-                  />
+                  <React.Suspense fallback={<Loading />}>
+                    <Home
+                      posts={posts}
+                      postsLoading={postsLoading}
+                      postsError={postsError}
+                    />
+                  </React.Suspense>
                 }
               />
               {posts.map((post: Posts) => {
@@ -74,12 +77,32 @@ function App() {
                   <Route
                     key={post.id}
                     path={`/blog-${post.id}`}
-                    element={<Blog id={post.id} posts={posts} />}
+                    element={
+                      <React.Suspense fallback={<Loading />}>
+                        <Blog id={post.id} posts={posts} />
+                      </React.Suspense>
+                    }
                   />
                 );
               })}
-              <Route path="/post" element={<CreatePost />} />
-              <Route path="*" element={!postsLoading && <NotFound />} />
+              <Route
+                path="/post"
+                element={
+                  <React.Suspense fallback={<Loading />}>
+                    <CreatePost />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  !postsLoading && (
+                    <React.Suspense fallback={<Loading />}>
+                      <NotFound />
+                    </React.Suspense>
+                  )
+                }
+              />
             </Routes>
           </Router>
         </TokenContext.Provider>
