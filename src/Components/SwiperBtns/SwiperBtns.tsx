@@ -13,12 +13,12 @@ function SwiperBtns() {
     setDisabledRight(swiper.isEnd);
 
     swiper.on("slideChange", handleSlideChange);
-  }, [swiper]);
 
-  function handleSlideChange() {
-    setDisabledLeft(swiper.isBeginning);
-    setDisabledRight(swiper.isEnd);
-  }
+    function handleSlideChange() {
+      setDisabledLeft(swiper.isBeginning);
+      setDisabledRight(swiper.isEnd);
+    }
+  }, [swiper]);
 
   return (
     <div className="flex gap-components">
