@@ -16,7 +16,8 @@
     "react-helmet": "^6.1.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.21.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

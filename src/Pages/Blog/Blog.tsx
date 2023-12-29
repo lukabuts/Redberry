@@ -8,6 +8,10 @@ import SwiperBtns from "../../Components/SwiperBtns/SwiperBtns";
 import { TokenContext, PostPageContext } from "../../App";
 import { Helmet } from "react-helmet";
 import Loading from "../../Components/Loading/Loading";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 function Blog({ id, posts }: blogProps) {
   const [noSimilarCategories, setNoSimilarCategories] = useState(false);
@@ -156,33 +160,36 @@ function Blog({ id, posts }: blogProps) {
               </h1>
             ) : (
               // Swiper
-              <div className="flex flex-col w-full gap-blog">
-                <div className="flex items-center justify-between">
-                  <h3 className=" text-black_ text-32 font-700">
-                    მსგავსი სტატიები
-                  </h3>
-                  <SwiperBtns />
-                </div>
-                <div
-                  className="flex overflow-hidden gap-post_container_x"
-                  id="swiperDiv"
+              <div className="w-full">
+                <Swiper
+                  id="mySwiper"
+                  modules={[Navigation, Pagination, A11y]}
+                  spaceBetween={32}
+                  slidesPerView={"auto"}
+                  className="flex-col-reverse gap-blog specialFlex"
                 >
-                  {similarPosts.map((post) => {
+                  <div className="flex items-center justify-between">
+                    <h3 className=" text-black_ text-32 font-700">
+                      მსგავსი სტატიები
+                    </h3>
+                    <SwiperBtns />
+                  </div>
+                  {similarPosts.map((z) => {
                     return (
-                      <div key={post.id} className="w-full max-w-post">
+                      <SwiperSlide className="max-w-post" key={z.id}>
                         <Post
-                          img={post.image}
-                          author={post.author}
-                          date={post.publish_date}
-                          id={post.id}
-                          title={post.title}
-                          desc={post.description}
-                          postCategories={post.categories}
+                          img={z.image}
+                          author={z.author}
+                          date={z.publish_date}
+                          id={z.id}
+                          title={z.title}
+                          desc={z.description}
+                          postCategories={z.categories}
                         />
-                      </div>
+                      </SwiperSlide>
                     );
                   })}
-                </div>
+                </Swiper>
               </div>
             )}
           </>

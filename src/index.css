@@ -59,4 +59,9 @@
     border-radius: 10px;
     background-color: red;
   }
+
+  /* Swiper display flex */
+  .specialFlex {
+    display: flex !important;
+  }
 }
